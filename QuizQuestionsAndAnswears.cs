@@ -9,13 +9,14 @@ namespace QuizMaker
     class QuizQuestionsAndAnswears
     {
         public string Question;
-        public string RightAnswer;
-        public string WrongAnswer1;
-        public string WrongAnswer2;
+        List<string> answers;
+        //public string RightAnswer;
+        //public string WrongAnswer1;
+        //public string WrongAnswer2;
 
         public override string ToString()
         {
-            return $"{Question} {RightAnswer} {WrongAnswer1} {WrongAnswer2}";
+            return $"{answers}";
         }
     }
 }
