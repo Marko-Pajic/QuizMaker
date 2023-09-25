@@ -4,23 +4,37 @@
     {
         static void Main(string[] args)
         {
-            List<QuizQuestionsAndAnswears>foodAndDrinkTrivia = new List<QuizQuestionsAndAnswears>();
+            string questionNaire = Console.ReadLine();// Naming a category of guestions
 
-            QuizQuestionsAndAnswears question1 = new QuizQuestionsAndAnswears();
+            List<Question> questionContainer = new List<Question>(); // Object containing all questions
 
-            question1.Question = "What is the common name for dried plums?";
-            List<string> answers1 = new List<string>();
-            answers1.Add("Prunes");
-            answers1.Add("Dates");
-            answers1.Add("Rasins");
-            
-            //question1.RightAnswer = "Prunes";
-            //question1.WrongAnswer1 = "Dates";
-            //question1.WrongAnswer2 = "Rasins";
+            Question questionCategory = new Question(); // Categoty name
 
-            QuizQuestionsAndAnswears question2 = new QuizQuestionsAndAnswears();
+            questionCategory.Name = questionNaire;
 
-            question2.Question = "What’s the primary ingredient in hummus?";
+            string quizQuestion = Console.ReadLine();
+
+            Question question1 = new Question(); // Questions container
+
+            question1.Questions = quizQuestion;// Actual question
+
+            List<string> answers1 = new List<string>();// Answers container
+            question1.Answers = answers1;
+            string correctAnswer = Console.ReadLine();
+            answers1.Add(correctAnswer);
+            int incorrectAnswerCount = 0;
+
+            do
+            {
+                string incorrectAnswer = Console.ReadLine();
+                answers1.Add(incorrectAnswer);
+                incorrectAnswerCount++;
+
+            } while (incorrectAnswerCount < 2);
+
+            Question question2 = new Question();
+
+            question2.Questions = "What’s the primary ingredient in hummus?";
             List<string> answers2 = new List<string>();
             answers2.Add("Chickpeas");
             answers2.Add("Tahini");
@@ -30,9 +44,9 @@
             //question2.WrongAnswer1 = "Tahini";
             //question2.WrongAnswer2 = "Sesame";
 
-            QuizQuestionsAndAnswears question3 = new QuizQuestionsAndAnswears();
+            Question question3 = new Question();
 
-            question3.Question = "Which country produces the most coffee in the world?";
+            question3.Questions = "Which country produces the most coffee in the world?";
             List<string> answers3 = new List<string>();
             answers3.Add("Brasil");
             answers3.Add("Nicaragua");
@@ -42,9 +56,9 @@
             //question3.WrongAnswer1 = "Nicaragua";
             //question3.WrongAnswer2 = "Colombia";
 
-            QuizQuestionsAndAnswears question4 = new QuizQuestionsAndAnswears();
+            Question question4 = new Question();
 
-            question4.Question = "Which European nation was said to invent hot dogs?";
+            question4.Questions = "Which European nation was said to invent hot dogs?";
             List<string> answers4 = new List<string>();
             answers4.Add("Germany");
             answers4.Add("Poland");
@@ -54,9 +68,9 @@
             //question4.WrongAnswer1 = "Poland";
             //question4.WrongAnswer2 = "Italy";
 
-            QuizQuestionsAndAnswears question5 = new QuizQuestionsAndAnswears();
+            Question question5 = new Question();
 
-            question5.Question = "Which kind of alcohol is Russia notoriously known for?";
+            question5.Questions = "Which kind of alcohol is Russia notoriously known for?";
             List<string> answers5 = new List<string>();
             answers5.Add("Vodka");
             answers5.Add("Beer");
@@ -66,14 +80,14 @@
             //question5.WrongAnswer1 = "Beer";
             //question5.WrongAnswer2 = "Wine";
 
-            foodAndDrinkTrivia.Add(question1);
-            foodAndDrinkTrivia.Add(question2);
-            foodAndDrinkTrivia.Add(question3);
-            foodAndDrinkTrivia.Add(question4);
-            foodAndDrinkTrivia.Add(question5);
+            questionContainer.Add(question1);
+            questionContainer.Add(question2);
+            questionContainer.Add(question3);
+            questionContainer.Add(question4);
+            questionContainer.Add(question5);
 
             Console.WriteLine(answers1);
         }
-       
+
     }
 }
