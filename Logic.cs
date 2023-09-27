@@ -1,6 +1,7 @@
 ﻿namespace QuizMaker
 {
-    internal class Class1
+    public class Logic
+
     {
     }
 }

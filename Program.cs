@@ -6,17 +6,15 @@
         {
             string questionNaire = Console.ReadLine();// Naming a category of guestions
 
-            List<Question> questionContainer = new List<Question>(); // Object containing all questions
+            QuestionContainer questionContainer = new QuestionContainer(); // Object containing all questions
 
-            Question questionCategory = new Question(); // Categoty name
-
-            questionCategory.Name = questionNaire;
+            questionContainer.Name = questionNaire;  // Category name
 
             string quizQuestion = Console.ReadLine();
 
             Question question1 = new Question(); // Questions container
 
-            question1.Questions = quizQuestion;// Actual question
+            question1.Inquiry = quizQuestion;// Actual question
 
             List<string> answers1 = new List<string>();// Answers container
             question1.Answers = answers1;
@@ -34,7 +32,7 @@
 
             Question question2 = new Question();
 
-            question2.Questions = "What’s the primary ingredient in hummus?";
+            question2.Inquiry = "What’s the primary ingredient in hummus?";
             List<string> answers2 = new List<string>();
             answers2.Add("Chickpeas");
             answers2.Add("Tahini");
@@ -46,7 +44,7 @@
 
             Question question3 = new Question();
 
-            question3.Questions = "Which country produces the most coffee in the world?";
+            question3.Inquiry = "Which country produces the most coffee in the world?";
             List<string> answers3 = new List<string>();
             answers3.Add("Brasil");
             answers3.Add("Nicaragua");
@@ -58,7 +56,7 @@
 
             Question question4 = new Question();
 
-            question4.Questions = "Which European nation was said to invent hot dogs?";
+            question4.Inquiry = "Which European nation was said to invent hot dogs?";
             List<string> answers4 = new List<string>();
             answers4.Add("Germany");
             answers4.Add("Poland");
@@ -70,7 +68,7 @@
 
             Question question5 = new Question();
 
-            question5.Questions = "Which kind of alcohol is Russia notoriously known for?";
+            question5.Inquiry = "Which kind of alcohol is Russia notoriously known for?";
             List<string> answers5 = new List<string>();
             answers5.Add("Vodka");
             answers5.Add("Beer");
@@ -80,11 +78,11 @@
             //question5.WrongAnswer1 = "Beer";
             //question5.WrongAnswer2 = "Wine";
 
-            questionContainer.Add(question1);
-            questionContainer.Add(question2);
-            questionContainer.Add(question3);
-            questionContainer.Add(question4);
-            questionContainer.Add(question5);
+            questionContainer.firstQuestion = question1;
+            questionContainer.secondQuestion = question2;
+            questionContainer.thirdQuestion = question3;
+            questionContainer.fourthQuestion = question4;
+            questionContainer.fifthQuestion = question5;
 
             Console.WriteLine(answers1);
         }

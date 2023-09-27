@@ -2,8 +2,7 @@
 {
     class Question
     {
-        public string Name;
-        public string Questions;
+        public string Inquiry;
         public List<string> Answers;
         
 
