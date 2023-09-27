@@ -4,17 +4,17 @@
     {
         static void Main(string[] args)
         {
-            string questionNaire = Console.ReadLine();// Naming a category of guestions
+            UIMethod.IntroAndQuizRules();
+
+            UIMethod.CategoryName();// Naming a category of guestions
 
             QuestionContainer questionContainer = new QuestionContainer(); // Object containing all questions
 
-            questionContainer.Name = questionNaire;  // Category name
-
-            string quizQuestion = Console.ReadLine();
+            questionContainer.Name = UIMethod.CategoryName();  // Category name
 
             Question question1 = new Question(); // Questions container
 
-            question1.Inquiry = quizQuestion;// Actual question
+            question1.Inquiry = UIMethod.QuestionInput();// Actual question
 
             List<string> answers1 = new List<string>();// Answers container
             question1.Answers = answers1;
