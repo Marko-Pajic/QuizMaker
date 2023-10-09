@@ -6,29 +6,34 @@
         {
             UIMethod.IntroAndQuizRules();
 
-            UIMethod.CategoryName();// Naming a category of guestions
+            //UIMethod.CategoryName();// Naming a category of guestions
 
-            QuestionContainer questionContainer = new QuestionContainer(); // Object containing all questions
+            QuestionContainer questionContainer = new QuestionContainer(); // Object containing all category name and questions
 
             questionContainer.Name = UIMethod.CategoryName();  // Category name
+            
+            List<Question> categoryQuestions = new List<Question>();
+
+            questionContainer.Questions = categoryQuestions;
 
             Question question1 = new Question(); // Questions container
 
             question1.Inquiry = UIMethod.QuestionInput();// Actual question
 
             List<string> answers1 = new List<string>();// Answers container
-            question1.Answers = answers1;
             string correctAnswer = Console.ReadLine();
             answers1.Add(correctAnswer);
+
             int incorrectAnswerCount = 0;
 
             do
             {
-                string incorrectAnswer = Console.ReadLine();
-                answers1.Add(incorrectAnswer);
+                //string incorrectAnswer = Console.ReadLine();
+                answers1.Add(Console.ReadLine());
                 incorrectAnswerCount++;
 
             } while (incorrectAnswerCount < 2);
+            question1.Answers = answers1;
 
             Question question2 = new Question();
 
@@ -78,11 +83,11 @@
             //question5.WrongAnswer1 = "Beer";
             //question5.WrongAnswer2 = "Wine";
 
-            questionContainer.firstQuestion = question1;
-            questionContainer.secondQuestion = question2;
-            questionContainer.thirdQuestion = question3;
-            questionContainer.fourthQuestion = question4;
-            questionContainer.fifthQuestion = question5;
+            categoryQuestions.Add(question1);
+            categoryQuestions.Add(question2);
+            categoryQuestions.Add(question3);
+            categoryQuestions.Add(question4);
+            categoryQuestions.Add(question5);
 
             Console.WriteLine(answers1);
         }

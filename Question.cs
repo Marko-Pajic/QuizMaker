@@ -2,15 +2,22 @@
 {
     class Question
     {
-        public string Inquiry;
-        public List<string> Answers;
-        
+        private string _inquiry;
 
-        //public Questions(string aQuestion, List<string>aAnswers) 
-        //{
-        //    Question = aQuestion;
-        //    List<string> Answers = aAnswers;
-        //}
+        public string Inquiry
+        {
+            get { return _inquiry; }
+            set { _inquiry = value; }
+        }
+
+        private List<string> _answers;
+
+        public List<string> Answers
+        {
+            get { return _answers; }
+            set { _answers = value; }
+        }
+
         public override string ToString()
         {
             return $"{Answers}";
