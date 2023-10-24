@@ -1,22 +1,9 @@
 ﻿namespace QuizMaker
 {
-    class Question
+    public class Question
     {
-        private string _inquiry;
-
-        public string Inquiry
-        {
-            get { return _inquiry; }
-            set { _inquiry = value; }
-        }
-
-        private List<string> _answers;
-
-        public List<string> Answers
-        {
-            get { return _answers; }
-            set { _answers = value; }
-        }
+        public string Inquiry { get; set; }
+        public List<string> Answers { get; set; }
 
         public override string ToString()
         {

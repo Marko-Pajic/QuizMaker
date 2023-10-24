@@ -1,12 +1,12 @@
-﻿namespace QuizMaker
+﻿using System.Xml.Serialization;
+
+namespace QuizMaker
 {
     internal class Program
     {
         static void Main(string[] args)
         {
             UIMethod.IntroAndQuizRules();
-
-            //UIMethod.CategoryName();// Naming a category of guestions
 
             while (true)
             {
@@ -17,7 +17,6 @@
 
                 List<Question> categoryQuestions = new List<Question>();
 
-                questionContainer.Questions = categoryQuestions;
 
                 do
                 {
@@ -40,89 +39,43 @@
 
                     } while (incorrectAnswerCount < numOfAnswers - 1);
 
-                    Console.Write("Write down the correct answer to your question");
+                    Console.Write("Write down the correct answer to your question: ");
                     string correctAnswer = Console.ReadLine();
                     answers.Add(correctAnswer);
                     question.Answers = answers;
+
                     categoryQuestions.Add(question);
-                    Console.WriteLine(answers[0]);
-                    Console.WriteLine(answers[1]);
+
+                    XmlSerializer serializer = new XmlSerializer(typeof(List<Question>));
+                    string path = $@"C:\Users\pajic\source\repos\QuizMaker\xml.files\{questionContainer.Name}.xml";
+                    using (FileStream file = File.Create(path))
+                    {
+                        serializer.Serialize(file, categoryQuestions);
+                    }
 
                     Console.WriteLine("Wanna add more questions");
                     Console.WriteLine("Answer with y or n");
                     string createNewQuestions = Console.ReadLine().ToLower();
 
-                    if (createNewQuestions == "y")
-                    {
-                        continue;
-                    }
-                    else
+                    if (createNewQuestions != "y")
                     {
                         break;
                     }
 
                 }while (true);
 
+                questionContainer.Questions = categoryQuestions;
+
                 Console.WriteLine("Wanna create new category?");
                 Console.WriteLine("Answer with y or n");
                 string createNewCategory = Console.ReadLine().ToLower();
 
-                if (createNewCategory == "y")
-                {
-                    continue;
-                }
-                else
+                if (createNewCategory != "y")
                 {
                     break;
                 }
             }
-            Question question2 = new Question();
-
-            question2.Inquiry = "What’s the primary ingredient in hummus?";
-            List<string> answers2 = new List<string>();
-            answers2.Add("Chickpeas");
-            answers2.Add("Tahini");
-            answers2.Add("Sesame");
-
-            //question2.RightAnswer = "Chickpeas";
-            //question2.WrongAnswer1 = "Tahini";
-            //question2.WrongAnswer2 = "Sesame";
-
-            Question question3 = new Question();
-
-            question3.Inquiry = "Which country produces the most coffee in the world?";
-            List<string> answers3 = new List<string>();
-            answers3.Add("Brasil");
-            answers3.Add("Nicaragua");
-            answers3.Add("Colombia");
-
-            //question3.RightAnswer = "Brasil";
-            //question3.WrongAnswer1 = "Nicaragua";
-            //question3.WrongAnswer2 = "Colombia";
-
-            Question question4 = new Question();
-
-            question4.Inquiry = "Which European nation was said to invent hot dogs?";
-            List<string> answers4 = new List<string>();
-            answers4.Add("Germany");
-            answers4.Add("Poland");
-            answers4.Add("Italy");
-
-            //question4.RightAnswer = "Germany";
-            //question4.WrongAnswer1 = "Poland";
-            //question4.WrongAnswer2 = "Italy";
-
-            Question question5 = new Question();
-
-            question5.Inquiry = "Which kind of alcohol is Russia notoriously known for?";
-            List<string> answers5 = new List<string>();
-            answers5.Add("Vodka");
-            answers5.Add("Beer");
-            answers5.Add("Wine");
-
-            //question5.RightAnswer = "Vodka";
-            //question5.WrongAnswer1 = "Beer";
-            //question5.WrongAnswer2 = "Wine";
+            
 
             //categoryQuestions.Add(question1);
             //categoryQuestions.Add(question2);
