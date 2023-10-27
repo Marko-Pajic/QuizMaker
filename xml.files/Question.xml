@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Inquiry>what is best music?</Inquiry>
-  <Answers>
-    <string>disco</string>
-    <string>modern</string>
-    <string>rave</string>
-  </Answers>
-</Question>

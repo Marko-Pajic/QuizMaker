@@ -46,9 +46,14 @@ namespace QuizMaker
 
                     categoryQuestions.Add(question);
 
+                    string directoryPath = @"xml.files";
+                    string fileName = $@"{questionContainer.Name}.xml";
+                    string filePath = Path.Combine(directoryPath, fileName);
+
+                    Directory.CreateDirectory(directoryPath);
+
                     XmlSerializer serializer = new XmlSerializer(typeof(List<Question>));
-                    string path = $@"C:\Users\pajic\source\repos\QuizMaker\xml.files\{questionContainer.Name}.xml";
-                    using (FileStream file = File.Create(path))
+                    using (FileStream file = File.Create(filePath))
                     {
                         serializer.Serialize(file, categoryQuestions);
                     }
@@ -75,14 +80,6 @@ namespace QuizMaker
                     break;
                 }
             }
-            
-
-            //categoryQuestions.Add(question1);
-            //categoryQuestions.Add(question2);
-            //categoryQuestions.Add(question3);
-            //categoryQuestions.Add(question4);
-            //categoryQuestions.Add(question5);
-
             
         }
 
