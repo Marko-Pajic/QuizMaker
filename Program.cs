@@ -11,7 +11,7 @@ namespace QuizMaker
             while (true)
             {
 
-                QuestionContainer questionContainer = new QuestionContainer(); // Object containing all category name and questions
+                QuizCategory questionContainer = new QuizCategory(); // Object containing all category name and questions
 
                 questionContainer.Name = UIMethod.CategoryName();  // Category name
 
