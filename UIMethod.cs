@@ -20,5 +20,12 @@
             string question = Console.ReadLine();
             return question;
         }
+
+        public static int NumOfAnswers()
+        {
+            Console.Write("Enter the number of answers: ");
+            int numOfAnswers = int.Parse(Console.ReadLine());
+            return numOfAnswers;
+        }
     }
 }

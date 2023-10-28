@@ -26,18 +26,19 @@ namespace QuizMaker
 
                     List<string> answers = new List<string>();// Answers container
 
-                    Console.Write("Enter the number of answers: ");
-                    int numOfAnswers = int.Parse(Console.ReadLine());
+                    int numOfAnswers = UIMethod.NumOfAnswers();
 
-                    int incorrectAnswerCount = 0;
+                    answers = Logic.AddingAnswers(numOfAnswers, answers);
 
-                    do
-                    {
-                        incorrectAnswerCount++;
-                        Console.Write($"Enter answer {incorrectAnswerCount}. ");
-                        answers.Add(Console.ReadLine());
+                    //int incorrectAnswerCount = 0;
 
-                    } while (incorrectAnswerCount < numOfAnswers - 1);
+                    //do
+                    //{
+                    //    incorrectAnswerCount++;
+                    //    Console.Write($"Enter answer {incorrectAnswerCount}. ");
+                    //    answers.Add(Console.ReadLine());
+
+                    //} while (incorrectAnswerCount < numOfAnswers - 1);
 
                     Console.Write("Write down the correct answer to your question: ");
                     string correctAnswer = Console.ReadLine();
