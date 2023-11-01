@@ -27,5 +27,43 @@
             int numOfAnswers = int.Parse(Console.ReadLine());
             return numOfAnswers;
         }
+
+        public static List<string> DecoyAnswers(int numOfAnswers, List<string> answers)
+        {
+            int incorrectAnswerCount = 0;
+
+            do
+            {
+                incorrectAnswerCount++;
+                Console.Write($"Enter answer {incorrectAnswerCount}. ");
+                answers.Add(Console.ReadLine());
+
+            } while (incorrectAnswerCount < numOfAnswers - 1);
+
+            return answers;
+        }
+
+       public static string CorrectAnswer()
+        {
+            Console.Write("Write down the correct answer to your question: ");
+            string correctAnswer = Console.ReadLine();
+            return correctAnswer;
+        }
+
+        public static string CreateNewQuestion()
+        {
+            Console.WriteLine("Wanna add more questions");
+            Console.WriteLine("Answer with y or n");
+            string createNewQuestions = Console.ReadLine().ToLower();
+            return createNewQuestions;
+        }
+
+        public static string CreateNewCategory() 
+        {
+            Console.WriteLine("Wanna create new category?");
+            Console.WriteLine("Answer with y or n");
+            string createNewCategory = Console.ReadLine().ToLower();
+            return createNewCategory;
+        }
     }
 }

@@ -3,18 +3,17 @@
     public class Logic
 
     {
-        public static List<string> AddingAnswers(int numOfAnswers, List<string> answers) 
+        public static List<string> IndexShuffle(List<string> answers)
         {
-            int incorrectAnswerCount = 0;
-            //List<string> answers = new List<string>();
+            Random rng = new Random();
 
-            do
+            for (int i = answers.Count - 1; i > 0; i--)
             {
-                incorrectAnswerCount++;
-                Console.Write($"Enter answer {incorrectAnswerCount}. ");
-                answers.Add(Console.ReadLine());
-
-            } while (incorrectAnswerCount<numOfAnswers - 1);
+                int j = rng.Next(i + 1);
+                string temp = answers[i];
+                answers[i] = answers[j];
+                answers[j] = temp;
+            }
 
             return answers;
         }

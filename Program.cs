@@ -1,9 +1,11 @@
-﻿using System.Xml.Serialization;
+﻿using System;
+using System.Xml.Serialization;
 
 namespace QuizMaker
 {
     internal class Program
     {
+        public static readonly Random rng = new Random();
         static void Main(string[] args)
         {
             UIMethod.IntroAndQuizRules();
@@ -28,22 +30,17 @@ namespace QuizMaker
 
                     int numOfAnswers = UIMethod.NumOfAnswers();
 
-                    answers = Logic.AddingAnswers(numOfAnswers, answers);
+                    answers = UIMethod.DecoyAnswers(numOfAnswers, answers);
 
-                    //int incorrectAnswerCount = 0;
-
-                    //do
-                    //{
-                    //    incorrectAnswerCount++;
-                    //    Console.Write($"Enter answer {incorrectAnswerCount}. ");
-                    //    answers.Add(Console.ReadLine());
-
-                    //} while (incorrectAnswerCount < numOfAnswers - 1);
-
-                    Console.Write("Write down the correct answer to your question: ");
-                    string correctAnswer = Console.ReadLine();
+                    string correctAnswer = UIMethod.CorrectAnswer();
+                    
                     answers.Add(correctAnswer);
+
+                    answers = Logic.IndexShuffle(answers);
+
                     question.Answers = answers;
+
+                    question.CorrectAnswerIndex = answers.IndexOf(correctAnswer);
 
                     categoryQuestions.Add(question);
 
@@ -59,9 +56,7 @@ namespace QuizMaker
                         serializer.Serialize(file, categoryQuestions);
                     }
 
-                    Console.WriteLine("Wanna add more questions");
-                    Console.WriteLine("Answer with y or n");
-                    string createNewQuestions = Console.ReadLine().ToLower();
+                    string createNewQuestions = UIMethod.CreateNewQuestion();
 
                     if (createNewQuestions != "y")
                     {
@@ -72,15 +67,15 @@ namespace QuizMaker
 
                 questionContainer.Questions = categoryQuestions;
 
-                Console.WriteLine("Wanna create new category?");
-                Console.WriteLine("Answer with y or n");
-                string createNewCategory = Console.ReadLine().ToLower();
+                string createNewCategory = UIMethod.CreateNewCategory();
 
                 if (createNewCategory != "y")
                 {
                     break;
                 }
             }
+
+
             
         }
 
