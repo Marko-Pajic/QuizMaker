@@ -10,7 +10,9 @@ namespace QuizMaker
         {
             UIMethod.IntroAndQuizRules();
 
-            while (true)
+            bool createNewCategory = false;
+
+            do
             {
 
                 QuizCategory questionContainer = new QuizCategory(); // Object containing all category name and questions
@@ -19,6 +21,7 @@ namespace QuizMaker
 
                 List<Question> categoryQuestions = new List<Question>();
 
+                bool createNewQuestions = false;
 
                 do
                 {
@@ -33,7 +36,7 @@ namespace QuizMaker
                     answers = UIMethod.DecoyAnswers(numOfAnswers, answers);
 
                     string correctAnswer = UIMethod.CorrectAnswer();
-                    
+
                     answers.Add(correctAnswer);
 
                     answers = Logic.IndexShuffle(answers);
@@ -56,24 +59,15 @@ namespace QuizMaker
                         serializer.Serialize(file, categoryQuestions);
                     }
 
-                    string createNewQuestions = UIMethod.CreateNewQuestion();
+                    createNewQuestions = UIMethod.CreateNewQuestion();
 
-                    if (createNewQuestions != "y")
-                    {
-                        break;
-                    }
-
-                }while (true);
+                } while (createNewQuestions);
 
                 questionContainer.Questions = categoryQuestions;
 
-                string createNewCategory = UIMethod.CreateNewCategory();
+                createNewCategory = UIMethod.CreateNewCategory();
 
-                if (createNewCategory != "y")
-                {
-                    break;
-                }
-            }
+            } while (createNewCategory);
 
 
             

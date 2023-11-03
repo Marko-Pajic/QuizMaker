@@ -43,27 +43,43 @@
             return answers;
         }
 
-       public static string CorrectAnswer()
+        public static string CorrectAnswer()
         {
             Console.Write("Write down the correct answer to your question: ");
             string correctAnswer = Console.ReadLine();
             return correctAnswer;
         }
 
-        public static string CreateNewQuestion()
+        public static bool CreateNewQuestion()
         {
             Console.WriteLine("Wanna add more questions");
             Console.WriteLine("Answer with y or n");
             string createNewQuestions = Console.ReadLine().ToLower();
-            return createNewQuestions;
+
+            if (createNewQuestions == "y")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
-        public static string CreateNewCategory() 
+        public static bool CreateNewCategory()
         {
             Console.WriteLine("Wanna create new category?");
             Console.WriteLine("Answer with y or n");
             string createNewCategory = Console.ReadLine().ToLower();
-            return createNewCategory;
+
+            if (createNewCategory == "y")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
