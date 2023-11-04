@@ -47,17 +47,19 @@ namespace QuizMaker
 
                     categoryQuestions.Add(question);
 
-                    string directoryPath = @"xml.files";
-                    string fileName = $@"{questionContainer.Name}.xml";
-                    string filePath = Path.Combine(directoryPath, fileName);
+                    FileUtils.XmlSerializer(questionContainer, categoryQuestions);
 
-                    Directory.CreateDirectory(directoryPath);
+                    //string directoryPath = @"xml.files";
+                    //string fileName = $@"{questionContainer.Name}.xml";
+                    //string filePath = Path.Combine(directoryPath, fileName);
 
-                    XmlSerializer serializer = new XmlSerializer(typeof(List<Question>));
-                    using (FileStream file = File.Create(filePath))
-                    {
-                        serializer.Serialize(file, categoryQuestions);
-                    }
+                    //Directory.CreateDirectory(directoryPath);
+
+                    //XmlSerializer serializer = new XmlSerializer(typeof(List<Question>));
+                    //using (FileStream file = File.Create(filePath))
+                    //{
+                    //    serializer.Serialize(file, categoryQuestions);
+                    //}
 
                     createNewQuestions = UIMethod.CreateNewQuestion();
 
