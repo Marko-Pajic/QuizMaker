@@ -4,7 +4,18 @@
     {
         public static void IntroAndQuizRules()
         {
-            Console.WriteLine("Welcome to game of Quiz bla bla");
+            Console.WriteLine("Welcome to game of Quiz...");
+            Console.WriteLine("Your welcome to start using QuizMaker");
+        }
+
+        public static int OptionMenu()
+        {
+            Console.WriteLine("Choose from one of following options:");
+            Console.WriteLine("1. Create new Quiz");
+            Console.WriteLine("2. Play the Quiz");
+            Console.WriteLine("3. Modify the current Quiz");
+            int optionMenu = int.Parse(Console.ReadLine());
+            return optionMenu;
         }
 
         public static string CategoryName()

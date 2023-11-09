@@ -10,68 +10,65 @@ namespace QuizMaker
         {
             UIMethod.IntroAndQuizRules();
 
-            bool createNewCategory = false;
+            FileUtils.GetExistingFile();
 
-            do
+            if (FileUtils.GetExistingFile() == 1)
             {
 
-                QuizCategory questionContainer = new QuizCategory(); // Object containing all category name and questions
-
-                questionContainer.Name = UIMethod.CategoryName();  // Category name
-
-                List<Question> categoryQuestions = new List<Question>();
-
-                bool createNewQuestions = false;
+                bool createNewCategory = false;
 
                 do
                 {
-                    Question question = new Question(); // Questions container
+                    QuizCategory questionContainer = new QuizCategory(); // Object containing all category name and questions
 
-                    question.Inquiry = UIMethod.QuestionInput();// Actual question
+                    questionContainer.Name = UIMethod.CategoryName();  // Category name
 
-                    List<string> answers = new List<string>();// Answers container
+                    List<Question> categoryQuestions = new List<Question>();
 
-                    int numOfAnswers = UIMethod.NumOfAnswers();
+                    bool createNewQuestions = false;
 
-                    answers = UIMethod.DecoyAnswers(numOfAnswers, answers);
+                    do
+                    {
+                        Question question = new Question(); // Questions container
 
-                    string correctAnswer = UIMethod.CorrectAnswer();
+                        question.Inquiry = UIMethod.QuestionInput();// Actual question
 
-                    answers.Add(correctAnswer);
+                        List<string> answers = new List<string>();// Answers container
 
-                    answers = Logic.IndexShuffle(answers);
+                        int numOfAnswers = UIMethod.NumOfAnswers();
 
-                    question.Answers = answers;
+                        answers = UIMethod.DecoyAnswers(numOfAnswers, answers);
 
-                    question.CorrectAnswerIndex = answers.IndexOf(correctAnswer);
+                        string correctAnswer = UIMethod.CorrectAnswer();
 
-                    categoryQuestions.Add(question);
+                        answers.Add(correctAnswer);
 
-                    FileUtils.XmlSerializer(questionContainer, categoryQuestions);
+                        answers = Logic.IndexShuffle(answers);
 
-                    //string directoryPath = @"xml.files";
-                    //string fileName = $@"{questionContainer.Name}.xml";
-                    //string filePath = Path.Combine(directoryPath, fileName);
+                        question.Answers = answers;
 
-                    //Directory.CreateDirectory(directoryPath);
+                        question.CorrectAnswerIndex = answers.IndexOf(correctAnswer);
 
-                    //XmlSerializer serializer = new XmlSerializer(typeof(List<Question>));
-                    //using (FileStream file = File.Create(filePath))
-                    //{
-                    //    serializer.Serialize(file, categoryQuestions);
-                    //}
+                        categoryQuestions.Add(question);
 
-                    createNewQuestions = UIMethod.CreateNewQuestion();
+                        FileUtils.XmlSerializer(questionContainer, categoryQuestions);
 
-                } while (createNewQuestions);
+                        createNewQuestions = UIMethod.CreateNewQuestion();
 
-                questionContainer.Questions = categoryQuestions;
+                    } while (createNewQuestions);
 
-                createNewCategory = UIMethod.CreateNewCategory();
+                    questionContainer.Questions = categoryQuestions;
 
-            } while (createNewCategory);
+                    createNewCategory = UIMethod.CreateNewCategory();
 
+                } while (createNewCategory);
 
+            }
+
+            if(FileUtils.GetExistingFile() == 2)
+            {
+
+            }
             
         }
 
