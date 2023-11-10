@@ -67,14 +67,7 @@
             Console.WriteLine("Answer with y or n");
             string createNewQuestions = Console.ReadLine().ToLower();
 
-            if (createNewQuestions == "y")
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return createNewQuestions == "y";
         }
 
         public static bool CreateNewCategory()
@@ -83,14 +76,7 @@
             Console.WriteLine("Answer with y or n");
             string createNewCategory = Console.ReadLine().ToLower();
 
-            if (createNewCategory == "y")
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return (createNewCategory == "y");
         }
     }
 }
