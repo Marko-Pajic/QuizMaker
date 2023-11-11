@@ -65,18 +65,18 @@
         {
             Console.WriteLine("Wanna add more questions");
             Console.WriteLine("Answer with y or n");
-            string createNewQuestions = Console.ReadLine().ToLower();
+            char createNewQuestions = Console.ReadKey().KeyChar;
 
-            return createNewQuestions == "y";
+            return createNewQuestions == Constants.POSITIVE_ANSWER;
         }
 
         public static bool GetNewCategory()
         {
             Console.WriteLine("Wanna create new category?");
             Console.WriteLine("Answer with y or n");
-            string createNewCategory = Console.ReadLine().ToLower();
+            char createNewCategory = Console.ReadKey().KeyChar;
 
-            return (createNewCategory == "y");
+            return createNewCategory == Constants.POSITIVE_ANSWER;
         }
     }
 }
