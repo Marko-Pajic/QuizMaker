@@ -2,13 +2,13 @@
 {
     public static class UIMethod
     {
-        public static void IntroAndQuizRules()
+        public static void ShowIntroAndQuizRules()
         {
             Console.WriteLine("Welcome to game of Quiz...");
             Console.WriteLine("Your welcome to start using QuizMaker");
         }
 
-        public static int OptionMenu()
+        public static int GetOptionPreferences()
         {
             Console.WriteLine("Choose from one of following options:");
             Console.WriteLine("1. Create new Quiz");
@@ -18,28 +18,28 @@
             return optionMenu;
         }
 
-        public static string CategoryName()
+        public static string GetCategoryName()
         {
             Console.WriteLine("Give you category of questions a name");
             string questionNaire = Console.ReadLine();
             return questionNaire;
         }
 
-        public static string QuestionInput()
+        public static string GetQuestionInput()
         {
             Console.WriteLine("Write the question that would fit inside your category");
             string question = Console.ReadLine();
             return question;
         }
 
-        public static int NumOfAnswers()
+        public static int GetNumOfAnswers()
         {
             Console.Write("Enter the number of answers: ");
             int numOfAnswers = int.Parse(Console.ReadLine());
             return numOfAnswers;
         }
 
-        public static List<string> DecoyAnswers(int numOfAnswers, List<string> answers)
+        public static List<string> GetDecoyAnswers(int numOfAnswers, List<string> answers)
         {
             int incorrectAnswerCount = 0;
 
@@ -54,14 +54,14 @@
             return answers;
         }
 
-        public static string CorrectAnswer()
+        public static string GetCorrectAnswer()
         {
             Console.Write("Write down the correct answer to your question: ");
             string correctAnswer = Console.ReadLine();
             return correctAnswer;
         }
 
-        public static bool CreateNewQuestion()
+        public static bool GetNewQuestion()
         {
             Console.WriteLine("Wanna add more questions");
             Console.WriteLine("Answer with y or n");
@@ -77,7 +77,7 @@
             }
         }
 
-        public static bool CreateNewCategory()
+        public static bool GetNewCategory()
         {
             Console.WriteLine("Wanna create new category?");
             Console.WriteLine("Answer with y or n");

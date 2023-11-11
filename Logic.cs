@@ -3,7 +3,7 @@
     public class Logic
 
     {
-        public static List<string> IndexShuffle(List<string> answers)
+        public static List<string> GetIndexShuffle(List<string> answers)
         {
 
             for (int i = answers.Count - 1; i > 0; i--)

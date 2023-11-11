@@ -15,7 +15,7 @@ namespace QuizMaker
             bool fileExists = Directory.Exists(directoryPath);
             if (fileExists != false)
             {
-                return UIMethod.OptionMenu();
+                return UIMethod.GetOptionPreferences();
             }
             else 
             {

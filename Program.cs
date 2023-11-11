@@ -8,7 +8,7 @@ namespace QuizMaker
         public static readonly Random rng = new Random();
         static void Main(string[] args)
         {
-            UIMethod.IntroAndQuizRules();
+            UIMethod.ShowIntroAndQuizRules();
 
             FileUtils.GetExistingFile();
 
@@ -21,7 +21,7 @@ namespace QuizMaker
                 {
                     QuizCategory questionContainer = new QuizCategory(); // Object containing all category name and questions
 
-                    questionContainer.Name = UIMethod.CategoryName();  // Category name
+                    questionContainer.Name = UIMethod.GetCategoryName();  // Category name
 
                     List<Question> categoryQuestions = new List<Question>();
 
@@ -31,19 +31,19 @@ namespace QuizMaker
                     {
                         Question question = new Question(); // Questions container
 
-                        question.Inquiry = UIMethod.QuestionInput();// Actual question
+                        question.Inquiry = UIMethod.GetQuestionInput();// Actual question
 
                         List<string> answers = new List<string>();// Answers container
 
-                        int numOfAnswers = UIMethod.NumOfAnswers();
+                        int numOfAnswers = UIMethod.GetNumOfAnswers();
 
-                        answers = UIMethod.DecoyAnswers(numOfAnswers, answers);
+                        answers = UIMethod.GetDecoyAnswers(numOfAnswers, answers);
 
-                        string correctAnswer = UIMethod.CorrectAnswer();
+                        string correctAnswer = UIMethod.GetCorrectAnswer();
 
                         answers.Add(correctAnswer);
 
-                        answers = Logic.IndexShuffle(answers);
+                        answers = Logic.GetIndexShuffle(answers);
 
                         question.Answers = answers;
 
@@ -53,13 +53,13 @@ namespace QuizMaker
 
                         FileUtils.XmlSerializer(questionContainer, categoryQuestions);
 
-                        createNewQuestions = UIMethod.CreateNewQuestion();
+                        createNewQuestions = UIMethod.GetNewQuestion();
 
                     } while (createNewQuestions);
 
                     questionContainer.Questions = categoryQuestions;
 
-                    createNewCategory = UIMethod.CreateNewCategory();
+                    createNewCategory = UIMethod.GetNewCategory();
 
                 } while (createNewCategory);
 
