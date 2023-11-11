@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
 namespace QuizMaker
 {
@@ -17,9 +12,9 @@ namespace QuizMaker
             {
                 return UIMethod.GetOptionPreferences();
             }
-            else 
+            else
             {
-                return 0; 
+                return 1;
             }
         }
 

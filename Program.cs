@@ -1,7 +1,4 @@
-﻿using System;
-using System.Xml.Serialization;
-
-namespace QuizMaker
+﻿namespace QuizMaker
 {
     internal class Program
     {
@@ -65,11 +62,11 @@ namespace QuizMaker
 
             }
 
-            if(FileUtils.GetExistingFile() == 2)
+            if (FileUtils.GetExistingFile() == 2)
             {
 
             }
-            
+
         }
 
     }
