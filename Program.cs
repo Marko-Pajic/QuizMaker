@@ -1,4 +1,6 @@
-﻿namespace QuizMaker
+﻿using System.Xml.Serialization;
+
+namespace QuizMaker
 {
     internal class Program
     {
@@ -7,9 +9,9 @@
         {
             UIMethod.ShowIntroAndQuizRules();
 
-            FileUtils.GetExistingFile();
+            int numOfChoice = FileUtils.GetExistingFile();
 
-            if (FileUtils.GetExistingFile() == 1)
+            if (numOfChoice == 1)
             {
 
                 bool createNewCategory = false;
@@ -60,10 +62,16 @@
 
                 } while (createNewCategory);
 
+                numOfChoice = Constants.QUIZ_INITIATOR;
             }
 
-            if (FileUtils.GetExistingFile() == 2)
+            if (numOfChoice == Constants.QUIZ_INITIATOR)
             {
+                QuizCategory questionContainer = new QuizCategory();
+                List<Question> categoryQuestions = new List<Question>();
+
+                string fileToPlay = FileUtils.GetCategorySelection();
+
 
             }
 

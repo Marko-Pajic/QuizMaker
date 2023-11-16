@@ -68,6 +68,7 @@
             char createNewQuestions = Console.ReadKey().KeyChar;
 
             return createNewQuestions == Constants.POSITIVE_ANSWER;
+
         }
 
         public static bool GetNewCategory()
@@ -78,5 +79,23 @@
 
             return createNewCategory == Constants.POSITIVE_ANSWER;
         }
+
+        public static void ShowCategoryInquiry() 
+        {
+            Console.WriteLine("Chose the category you would like to play");
+        }
+
+        //public static int GetChoiceOfCategory(QuizCategory questionContainer)
+        //{
+        //    Console.WriteLine("Chose the category you would like to play");
+        //    int nameCount = questionContainer.Name.Count() ;
+        //    for (int i = 1; i < nameCount; i++)
+        //    {
+        //        Console.WriteLine($"{i}.{questionContainer.Name}");
+        //    }
+        //    int numOfChosenCategory = int.Parse(Console.ReadLine());
+        //    return numOfChosenCategory;
+        //} 
+
     }
 }

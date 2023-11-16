@@ -1,4 +1,5 @@
-﻿using System.Xml.Serialization;
+﻿using System.Collections.Generic;
+using System.Xml.Serialization;
 
 namespace QuizMaker
 {
@@ -20,16 +21,46 @@ namespace QuizMaker
 
         public static void XmlSerializer(QuizCategory questionContainer, List<Question> categoryQuestions)
         {
-            string directoryPath = @"xml.files";
+            string directoryPath = Constants.DIRECTORY_FOLDER;
             string fileName = $@"{questionContainer.Name}.xml";
             string filePath = Path.Combine(directoryPath, fileName);
 
             Directory.CreateDirectory(directoryPath);
 
             XmlSerializer serializer = new XmlSerializer(typeof(List<Question>));
-            using (FileStream file = File.Create(filePath))
+            using (FileStream file = File.Create(fileName))
             {
                 serializer.Serialize(file, categoryQuestions);
+            }
+        }
+
+        public static string GetCategorySelection()
+        {
+            UIMethod.ShowCategoryInquiry();
+
+            string filePath = Constants.DIRECTORY_FOLDER;
+            string[] fileEntries = Directory.GetFiles(filePath);
+            string fileEntry;
+
+            for (int i = 0; i < fileEntries.Length; i++)
+            {
+                fileEntry = fileEntries[i];
+                Console.WriteLine($"{i + 1}.{Path.GetFileNameWithoutExtension(fileEntry)}");
+            }
+
+            int numOfChosenCategory = int.Parse(Console.ReadLine());
+            string fileToPlay = fileEntries[numOfChosenCategory - 1];
+            return fileToPlay;
+        }
+
+        public static void XmlDeserializer(string fileToPlay, QuizCategory questionContainer, List<Question> categoryQuestions)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(List<Question>));
+
+            using (FileStream file = File.OpenRead(fileToPlay))
+            {
+                categoryQuestions = serializer.Deserialize(file) as List<Question>;
+                questionContainer.Questions = categoryQuestions;
             }
         }
     }
