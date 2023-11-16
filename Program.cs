@@ -72,7 +72,7 @@ namespace QuizMaker
 
                 string fileToPlay = FileUtils.GetCategorySelection();
 
-
+                FileUtils.XmlDeserializer(fileToPlay, questionContainer, categoryQuestions);
             }
 
         }
