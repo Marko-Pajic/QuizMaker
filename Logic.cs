@@ -16,5 +16,35 @@
 
             return answers;
         }
+
+        public static int GetSumOfCorrectAnswer(List<Question> categoryQuestions, Question question)
+        {
+            int correctAnswer = 0;
+
+            for (int qn = 0; qn < categoryQuestions.Count; qn++)
+            {
+                question = categoryQuestions[qn];
+
+                UIMethod.ShowCategoryQuestion(question);
+
+                for (int ans = 0; ans < question.Answers.Count; ans++)
+                {
+                    UIMethod.ShowAnswerOption(question, ans);
+                }
+
+                int givenAnswer = UIMethod.GetAnswerPosition();
+
+                if (givenAnswer == question.CorrectAnswerIndex)
+                {
+                    correctAnswer++;
+                    UIMethod.ShowAffirmingMessage();
+                }
+                else
+                {
+                    UIMethod.ShowCorrectAnswer(question);
+                }
+            }
+            return correctAnswer;
+        }
     }
 }

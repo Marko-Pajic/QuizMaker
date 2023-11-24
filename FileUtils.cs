@@ -53,15 +53,17 @@ namespace QuizMaker
             return fileToPlay;
         }
 
-        public static void XmlDeserializer(string fileToPlay, QuizCategory questionContainer, List<Question> categoryQuestions)
+        public static List<Question> XmlDeserializer(string fileToPlay)
         {
+            List<Question> categoryQuestions = new List<Question>();
+
             XmlSerializer serializer = new XmlSerializer(typeof(List<Question>));
 
             using (FileStream file = File.OpenRead(fileToPlay))
             {
                 categoryQuestions = serializer.Deserialize(file) as List<Question>;
-                questionContainer.Questions = categoryQuestions;
             }
+            return categoryQuestions;
         }
     }
 }

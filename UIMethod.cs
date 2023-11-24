@@ -85,17 +85,33 @@
             Console.WriteLine("Chose the category you would like to play");
         }
 
-        //public static int GetChoiceOfCategory(QuizCategory questionContainer)
-        //{
-        //    Console.WriteLine("Chose the category you would like to play");
-        //    int nameCount = questionContainer.Name.Count() ;
-        //    for (int i = 1; i < nameCount; i++)
-        //    {
-        //        Console.WriteLine($"{i}.{questionContainer.Name}");
-        //    }
-        //    int numOfChosenCategory = int.Parse(Console.ReadLine());
-        //    return numOfChosenCategory;
-        //} 
+        public static void ShowCategoryQuestion(Question question)
+        {
+            Console.WriteLine(question.Inquiry);
+        }
+
+        public static void ShowAnswerOption(Question question, int ans)
+        {
+            Console.WriteLine($"{ans + 1} {question.Answers[ans]}");
+        }
+
+        public static int GetAnswerPosition()
+        {
+            Console.WriteLine("Enter the number infront of the answer you think is right");
+            int givenAnswer = int.Parse(Console.ReadLine()) - 1;
+            return givenAnswer;
+        }
+
+        public static void ShowAffirmingMessage()
+        {
+            Console.WriteLine("Thats correct!");
+        }
+
+        public static void ShowCorrectAnswer(Question question)
+        {
+            Console.WriteLine("Wrong answear");
+            Console.WriteLine($"Correct answer is {question.Answers[question.CorrectAnswerIndex]}");
+        }
 
     }
 }

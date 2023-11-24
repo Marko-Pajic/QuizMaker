@@ -72,10 +72,15 @@ namespace QuizMaker
 
                 string fileToPlay = FileUtils.GetCategorySelection();
 
-                FileUtils.XmlDeserializer(fileToPlay, questionContainer, categoryQuestions);
-            }
+                categoryQuestions = FileUtils.XmlDeserializer(fileToPlay);
 
+                Question question = new Question();
+
+                int correctAnswear = Logic.GetSumOfCorrectAnswer(categoryQuestions, question);
+
+            }
         }
 
     }
+
 }
