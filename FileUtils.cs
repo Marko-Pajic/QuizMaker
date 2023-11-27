@@ -45,7 +45,7 @@ namespace QuizMaker
             for (int i = 0; i < fileEntries.Length; i++)
             {
                 fileEntry = fileEntries[i];
-                Console.WriteLine($"{i + 1}.{Path.GetFileNameWithoutExtension(fileEntry)}");
+                UIMethod.ShowAnswerList(i, fileEntry);
             }
 
             int numOfChosenCategory = int.Parse(Console.ReadLine());

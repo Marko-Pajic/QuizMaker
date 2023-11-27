@@ -32,11 +32,9 @@ namespace QuizMaker
 
                         question.Inquiry = UIMethod.GetQuestionInput();// Actual question
 
-                        List<string> answers = new List<string>();// Answers container
-
                         int numOfAnswers = UIMethod.GetNumOfAnswers();
 
-                        answers = UIMethod.GetDecoyAnswers(numOfAnswers, answers);
+                        List<string> answers = UIMethod.GetDecoyAnswers(numOfAnswers);
 
                         string correctAnswer = UIMethod.GetCorrectAnswer();
 

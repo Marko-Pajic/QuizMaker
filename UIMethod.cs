@@ -39,9 +39,10 @@
             return numOfAnswers;
         }
 
-        public static List<string> GetDecoyAnswers(int numOfAnswers, List<string> answers)
+        public static List<string> GetDecoyAnswers(int numOfAnswers)
         {
             int incorrectAnswerCount = 0;
+            List<string> answers = new List<string>();
 
             do
             {
@@ -83,6 +84,11 @@
         public static void ShowCategoryInquiry() 
         {
             Console.WriteLine("Chose the category you would like to play");
+        }
+
+        public static void ShowAnswerList(int i, string fileEntry)
+        {
+            Console.WriteLine($"{i + 1}.{Path.GetFileNameWithoutExtension(fileEntry)}");
         }
 
         public static void ShowCategoryQuestion(Question question)
