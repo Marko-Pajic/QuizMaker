@@ -9,9 +9,9 @@ namespace QuizMaker
         {
             UIMethod.ShowIntroAndQuizRules();
 
-            int numOfChoice = FileUtils.GetExistingFile();
+            QuizState state = FileUtils.GetMenuOption();
 
-            if (numOfChoice == 1)
+            if (state == QuizState.Build)
             {
 
                 bool createNewCategory = false;
@@ -59,11 +59,11 @@ namespace QuizMaker
                     createNewCategory = UIMethod.GetNewCategory();
 
                 } while (createNewCategory);
-
-                numOfChoice = Constants.QUIZ_INITIATOR;
+;
+                state = QuizState.Play;
             }
 
-            if (numOfChoice == Constants.QUIZ_INITIATOR)
+            if (state == QuizState.Play)
             {
                 QuizCategory questionContainer = new QuizCategory();
                 List<Question> categoryQuestions = new List<Question>();

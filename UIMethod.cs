@@ -8,14 +8,25 @@
             Console.WriteLine("Your welcome to start using QuizMaker");
         }
 
-        public static int GetOptionPreferences()
+        public static QuizState GetOptionPreferences()
         {
             Console.WriteLine("Choose from one of following options:");
             Console.WriteLine("1. Create new Quiz");
             Console.WriteLine("2. Play the Quiz");
             Console.WriteLine("3. Modify the current Quiz");
             int optionMenu = int.Parse(Console.ReadLine());
-            return optionMenu;
+            switch (optionMenu)
+            {
+                case 1:
+                    return QuizState.Build;
+                case 2:
+                    return QuizState.Play;
+                case 3:
+                    return QuizState.Modify;
+                default:
+                    Console.WriteLine("Invalid input. Please enter a number between 1 and 3.");
+                    return GetOptionPreferences();
+            }
         }
 
         public static string GetCategoryName()
@@ -68,7 +79,7 @@
             Console.WriteLine("Answer with y or n");
             char createNewQuestions = Console.ReadKey().KeyChar;
 
-            return createNewQuestions == Constants.POSITIVE_ANSWER;
+            return createNewQuestions == Constant.POSITIVE_ANSWER;
 
         }
 
@@ -78,10 +89,10 @@
             Console.WriteLine("Answer with y or n");
             char createNewCategory = Console.ReadKey().KeyChar;
 
-            return createNewCategory == Constants.POSITIVE_ANSWER;
+            return createNewCategory == Constant.POSITIVE_ANSWER;
         }
 
-        public static void ShowCategoryInquiry() 
+        public static void ShowCategoryInquiry()
         {
             Console.WriteLine("Chose the category you would like to play");
         }

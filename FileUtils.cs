@@ -5,7 +5,7 @@ namespace QuizMaker
 {
     public class FileUtils
     {
-        public static int GetExistingFile()
+        public static QuizState GetMenuOption()
         {
             string directoryPath = @"xml.files";
             bool fileExists = Directory.Exists(directoryPath);
@@ -15,13 +15,13 @@ namespace QuizMaker
             }
             else
             {
-                return 1;
+                return QuizState.Build;
             }
         }
 
         public static void XmlSerializer(QuizCategory questionContainer, List<Question> categoryQuestions)
         {
-            string directoryPath = Constants.DIRECTORY_FOLDER;
+            string directoryPath = Constant.DIRECTORY_FOLDER;
             string fileName = $@"{questionContainer.Name}.xml";
             string filePath = Path.Combine(directoryPath, fileName);
 
@@ -38,7 +38,7 @@ namespace QuizMaker
         {
             UIMethod.ShowCategoryInquiry();
 
-            string filePath = Constants.DIRECTORY_FOLDER;
+            string filePath = Constant.DIRECTORY_FOLDER;
             string[] fileEntries = Directory.GetFiles(filePath);
             string fileEntry;
 
