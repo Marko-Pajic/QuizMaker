@@ -18,11 +18,11 @@ namespace QuizMaker
 
                 do
                 {
-                    QuizCategory questionContainer = new QuizCategory(); // Object containing all category name and questions
+                    QuizCategory quizCategory = new QuizCategory(); // Object containing all category name and questions
 
-                    questionContainer.Name = UIMethod.GetCategoryName();  // Category name
+                    quizCategory.Name = UIMethod.GetCategoryName();  // Category name
 
-                    List<Question> categoryQuestions = new List<Question>();
+                    List<Question> questions = new List<Question>();
 
                     bool createNewQuestions = false;
 
@@ -46,15 +46,15 @@ namespace QuizMaker
 
                         question.CorrectAnswerIndex = answers.IndexOf(correctAnswer);
 
-                        categoryQuestions.Add(question);
+                        questions.Add(question);
 
-                        FileUtils.XmlSerializer(questionContainer, categoryQuestions);
+                        FileUtils.XmlSerializer(quizCategory, questions);
 
                         createNewQuestions = UIMethod.GetNewQuestion();
 
                     } while (createNewQuestions);
 
-                    questionContainer.Questions = categoryQuestions;
+                    quizCategory.Questions = questions;
 
                     createNewCategory = UIMethod.GetNewCategory();
 
