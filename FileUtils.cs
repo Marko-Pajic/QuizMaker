@@ -28,7 +28,7 @@ namespace QuizMaker
             Directory.CreateDirectory(directoryPath);
 
             XmlSerializer serializer = new XmlSerializer(typeof(List<Question>));
-            using (FileStream file = File.Create(fileName))
+            using (FileStream file = File.Create(filePath))
             {
                 serializer.Serialize(file, categoryQuestions);
             }
