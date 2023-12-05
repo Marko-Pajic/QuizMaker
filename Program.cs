@@ -48,8 +48,6 @@ namespace QuizMaker
 
                         questions.Add(question);
 
-                        FileUtils.XmlSerializer(quizCategory, questions);
-
                         createNewQuestions = UIMethod.GetNewQuestion();
 
                     } while (createNewQuestions);
@@ -58,8 +56,10 @@ namespace QuizMaker
 
                     createNewCategory = UIMethod.GetNewCategory();
 
+                    FileUtils.SerializeCategoryToFile(quizCategory, questions);
+
                 } while (createNewCategory);
-;
+                
                 state = QuizState.Play;
             }
 
@@ -70,7 +70,7 @@ namespace QuizMaker
 
                 string fileToPlay = FileUtils.GetCategorySelection();
 
-                categoryQuestions = FileUtils.XmlDeserializer(fileToPlay);
+                questionContainer = FileUtils.DeserializeFileToCategory(fileToPlay);
 
                 Question question = new Question();
 

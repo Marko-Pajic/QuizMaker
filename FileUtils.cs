@@ -19,7 +19,7 @@ namespace QuizMaker
             }
         }
 
-        public static void XmlSerializer(QuizCategory questionContainer, List<Question> categoryQuestions)
+        public static void SerializeCategoryToFile(QuizCategory questionContainer, List<Question> categoryQuestions)
         {
             string directoryPath = Constant.DIRECTORY_FOLDER;
             string fileName = $@"{questionContainer.Name}.xml";
@@ -27,10 +27,10 @@ namespace QuizMaker
 
             Directory.CreateDirectory(directoryPath);
 
-            XmlSerializer serializer = new XmlSerializer(typeof(List<Question>));
+            XmlSerializer serializer = new XmlSerializer(typeof(QuizCategory/*List<Question>*/));
             using (FileStream file = File.Create(filePath))
             {
-                serializer.Serialize(file, categoryQuestions);
+                serializer.Serialize(file, questionContainer);
             }
         }
 
@@ -53,15 +53,15 @@ namespace QuizMaker
             return fileToPlay;
         }
 
-        public static List<Question> XmlDeserializer(string fileToPlay)
+        public static QuizCategory DeserializeFileToCategory(string fileToPlay)
         {
-            List<Question> categoryQuestions = new List<Question>();
+            QuizCategory categoryQuestions = new QuizCategory();
 
-            XmlSerializer serializer = new XmlSerializer(typeof(List<Question>));
+            XmlSerializer serializer = new XmlSerializer(typeof(QuizCategory));
 
             using (FileStream file = File.OpenRead(fileToPlay))
             {
-                categoryQuestions = serializer.Deserialize(file) as List<Question>;
+                categoryQuestions = serializer.Deserialize(file) as QuizCategory;
             }
             return categoryQuestions;
         }
