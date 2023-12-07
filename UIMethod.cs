@@ -97,9 +97,19 @@
             Console.WriteLine("Chose the category you would like to play");
         }
 
-        public static void ShowAnswerList(int i, string fileEntry)
+        public static string GetSelectedFileName(string[] fileEntries)
         {
-            Console.WriteLine($"{i + 1}.{Path.GetFileNameWithoutExtension(fileEntry)}");
+            string fileEntry;
+
+            for (int i = 0; i < fileEntries.Length; i++)
+            {
+                fileEntry = fileEntries[i];
+                Console.WriteLine($"{i + 1}.{Path.GetFileNameWithoutExtension(fileEntry)}");
+            }
+
+            int numOfChosenCategory = int.Parse(Console.ReadLine());
+            string fileToPlay = fileEntries[numOfChosenCategory - 1];
+            return fileToPlay;
         }
 
         public static void ShowCategoryQuestion(Question question)

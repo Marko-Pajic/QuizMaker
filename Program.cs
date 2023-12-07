@@ -65,16 +65,23 @@ namespace QuizMaker
 
             if (state == QuizState.Play)
             {
-                QuizCategory questionContainer = new QuizCategory();
-                List<Question> categoryQuestions = new List<Question>();
+                QuizCategory quizCategory = new QuizCategory();
 
-                string fileToPlay = FileUtils.GetCategorySelection();
+                List<Question> questions = new List<Question>();
 
-                questionContainer = FileUtils.DeserializeFileToCategory(fileToPlay);
+                UIMethod.ShowCategoryInquiry();
+
+                string[] fileEntires = FileUtils.GetCategorySelection();
+
+                string fileToPlay = UIMethod.GetSelectedFileName(fileEntires);
+
+                quizCategory = FileUtils.DeserializeFileToCategory(fileToPlay);
+
+                questions = quizCategory.Questions;
 
                 Question question = new Question();
 
-                int correctAnswear = Logic.GetSumOfCorrectAnswer(categoryQuestions, question);
+                int correctAnswear = Logic.GetSumOfCorrectAnswer(questions, question);
 
             }
         }

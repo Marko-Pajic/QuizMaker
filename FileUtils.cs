@@ -34,23 +34,11 @@ namespace QuizMaker
             }
         }
 
-        public static string GetCategorySelection()
+        public static string[] GetCategorySelection()
         {
-            UIMethod.ShowCategoryInquiry();
-
             string filePath = Constant.DIRECTORY_FOLDER;
             string[] fileEntries = Directory.GetFiles(filePath);
-            string fileEntry;
-
-            for (int i = 0; i < fileEntries.Length; i++)
-            {
-                fileEntry = fileEntries[i];
-                UIMethod.ShowAnswerList(i, fileEntry);
-            }
-
-            int numOfChosenCategory = int.Parse(Console.ReadLine());
-            string fileToPlay = fileEntries[numOfChosenCategory - 1];
-            return fileToPlay;
+            return fileEntries;
         }
 
         public static QuizCategory DeserializeFileToCategory(string fileToPlay)

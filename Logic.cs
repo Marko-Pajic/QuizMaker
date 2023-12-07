@@ -17,13 +17,13 @@
             return answers;
         }
 
-        public static int GetSumOfCorrectAnswer(List<Question> categoryQuestions, Question question)
+        public static int GetSumOfCorrectAnswer(List<Question> questions, Question question)
         {
             int correctAnswer = 0;
 
-            for (int qn = 0; qn < categoryQuestions.Count; qn++)
+            for (int qn = 0; qn < questions.Count; qn++)
             {
-                question = categoryQuestions[qn];
+                question = questions[qn];
 
                 UIMethod.ShowCategoryQuestion(question);
 
