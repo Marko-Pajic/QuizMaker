@@ -5,10 +5,13 @@ namespace QuizMaker
 {
     public class FileUtils
     {
+        /// <summary>
+        /// searches for specific xml file
+        /// </summary>
+        /// <returns>depending on file existence an appropriate enum</returns>
         public static QuizState GetMenuOption()
         {
-            string directoryPath = @"xml.files";
-            bool fileExists = Directory.Exists(directoryPath);
+            bool fileExists = Directory.Exists(Constant.DIRECTORY_FOLDER);
             if (fileExists != false)
             {
                 return UIMethod.GetOptionPreferences();

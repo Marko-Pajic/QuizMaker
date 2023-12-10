@@ -2,12 +2,19 @@
 {
     public static class UIMethod
     {
+        /// <summary>
+        /// displays intro and application instructions
+        /// </summary>
         public static void ShowIntroAndQuizRules()
         {
             Console.WriteLine("Welcome to game of Quiz...");
             Console.WriteLine("Your welcome to start using QuizMaker");
         }
 
+        /// <summary>
+        /// displays multiple choices
+        /// </summary>
+        /// <returns>enum of the chosen option</returns>
         public static QuizState GetOptionPreferences()
         {
             Console.WriteLine("Choose from one of following options:");
@@ -29,6 +36,10 @@
             }
         }
 
+        /// <summary>
+        /// displays a string in form of a question
+        /// </summary>
+        /// <returns>string in form of an answer</returns>
         public static string GetCategoryName()
         {
             Console.WriteLine("Give you category of questions a name");
@@ -36,6 +47,10 @@
             return questionNaire;
         }
 
+        /// <summary>
+        /// displays a string in form of a question
+        /// </summary>
+        /// <returns>string in form of an answer</returns>
         public static string GetQuestionInput()
         {
             Console.WriteLine("Write the question that would fit inside your category");
@@ -43,6 +58,10 @@
             return question;
         }
 
+        /// <summary>
+        /// displays a string in form of a question
+        /// </summary>
+        /// <returns>integer in form of an answer</returns>
         public static int GetNumOfAnswers()
         {
             Console.Write("Enter the number of answers: ");
@@ -50,6 +69,11 @@
             return numOfAnswers;
         }
 
+        /// <summary>
+        /// creates a list of answers
+        /// </summary>
+        /// <param name="numOfAnswers"></param>
+        /// <returns>list of given answers</returns>
         public static List<string> GetDecoyAnswers(int numOfAnswers)
         {
             int incorrectAnswerCount = 0;
@@ -66,6 +90,10 @@
             return answers;
         }
 
+        /// <summary>
+        /// displays a string in form of a question
+        /// </summary>
+        /// <returns>string in form of an answer</returns>
         public static string GetCorrectAnswer()
         {
             Console.Write("Write down the correct answer to your question: ");
@@ -136,7 +164,7 @@
 
         public static void ShowCorrectAnswer(Question question)
         {
-            Console.WriteLine("Wrong answear");
+            Console.WriteLine("Wrong answer");
             Console.WriteLine($"Correct answer is {question.Answers[question.CorrectAnswerIndex]}");
         }
 
