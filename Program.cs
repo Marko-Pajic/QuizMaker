@@ -59,7 +59,7 @@ namespace QuizMaker
                     FileUtils.SerializeCategoryToFile(quizCategory, questions);
 
                 } while (createNewCategory);
-                
+
                 state = QuizState.Play;
             }
 
@@ -81,8 +81,9 @@ namespace QuizMaker
 
                 Question question = new Question();
 
-                int correctAnswear = Logic.GetSumOfCorrectAnswer(questions, question);
+                int correctAnswer = Logic.GetSumOfCorrectAnswer(questions, question);
 
+                UIMethod.GetQuizGrades(correctAnswer, questions);
             }
         }
 

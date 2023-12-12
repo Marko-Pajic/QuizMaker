@@ -44,6 +44,8 @@
                     UIMethod.ShowCorrectAnswer(question);
                 }
             }
+            UIMethod.ShowNotification();
+
             return correctAnswer;
         }
     }

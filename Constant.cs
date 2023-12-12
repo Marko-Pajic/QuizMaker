@@ -13,4 +13,22 @@
         Play,
         Modify
     }
+
+    public enum GradeBorder
+    {
+        LowerBorderPassed = 50,
+        UpperBorderPassed = 60,
+        UpperBorderNice = 70,
+        UpperBorderSplendid = 80,
+        LowerBorderAwesome = 90
+    }
+
+    public enum QuizGrades
+    {
+        Failed,
+        Passed,
+        Nice,
+        Splendid,
+        Awesome
+    }
 }

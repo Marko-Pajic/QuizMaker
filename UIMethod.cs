@@ -168,5 +168,42 @@
             Console.WriteLine($"Correct answer is {question.Answers[question.CorrectAnswerIndex]}");
         }
 
+        public static void ShowNotification()
+        {
+            Console.WriteLine("That was your last question!");
+        }
+
+        public static void GetQuizGrades(int correctAnswer, List<Question> questions)
+        {
+            Console.WriteLine($"You had {correctAnswer} correct answers out of {questions.Count} questions.");
+
+            double calResult = ((double)correctAnswer / questions.Count) * 100;
+
+            Console.WriteLine($"Procentage: {calResult}%");
+
+            int result = (int)Math.Floor(calResult);
+
+            if (result >= (int)GradeBorder.LowerBorderPassed && result <= (int)GradeBorder.UpperBorderPassed)
+            {
+                Console.WriteLine(QuizGrades.Passed);
+            }
+            if (result > (int)GradeBorder.UpperBorderPassed && result <= (int)GradeBorder.UpperBorderNice)
+            {
+                Console.WriteLine(QuizGrades.Nice);
+            }
+            if (result > (int)GradeBorder.UpperBorderNice && result <= (int)GradeBorder.UpperBorderSplendid)
+            {
+                Console.WriteLine(QuizGrades.Splendid);
+            }
+            if (result >= (int)GradeBorder.LowerBorderAwesome)
+            {
+                Console.WriteLine(QuizGrades.Awesome);
+            }
+            if (result < (int)GradeBorder.LowerBorderPassed)
+            {
+                Console.WriteLine(QuizGrades.Failed);
+            }
+        }
+
     }
 }
