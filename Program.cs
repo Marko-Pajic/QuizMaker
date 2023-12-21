@@ -84,9 +84,9 @@ namespace QuizMaker
 
                         sectionQuestions = quizSection.Questions;
 
-                        int accurateAnswer = Logic.GetSumOfCorrectAnswer(sectionQuestions);
+                        int correctAnswerCount = Logic.GetSumOfCorrectAnswer(sectionQuestions);
 
-                        UIMethod.ShowGradingResult(accurateAnswer, sectionQuestions);
+                        UIMethod.ShowGradingResult(correctAnswerCount, sectionQuestions);
                         break;
 
 
