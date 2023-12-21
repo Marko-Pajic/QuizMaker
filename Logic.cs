@@ -27,26 +27,26 @@
             {
                 question = questions[qn];
 
-                UIMethod.ShowCategoryQuestion(question);
+                UI.ShowCategoryQuestion(question);
 
                 for (int ans = 0; ans < question.Answers.Count; ans++)
                 {
-                    UIMethod.ShowAnswerOption(question, ans);
+                    UI.ShowAnswerOption(question, ans);
                 }
 
-                int givenAnswer = UIMethod.GetAnswerPosition();
+                int givenAnswer = UI.GetAnswerPosition();
 
                 if (givenAnswer == question.CorrectAnswerIndex)
                 {
                     correctAnswer++;
-                    UIMethod.ShowAffirmingMessage();
+                    UI.ShowAffirmingMessage();
                 }
                 else
                 {
-                    UIMethod.ShowCorrectAnswer(question);
+                    UI.ShowCorrectAnswer(question);
                 }
             }
-            UIMethod.ShowNotification();
+            UI.ShowNotification();
 
             return correctAnswer;
         }

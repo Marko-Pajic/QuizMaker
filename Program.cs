@@ -8,7 +8,7 @@ namespace QuizMaker
         public static readonly Random rng = new Random();
         static void Main(string[] args)
         {
-            UIMethod.ShowIntroAndQuizRules();
+            UI.ShowIntroAndQuizRules();
 
             while (true)
             {
@@ -26,7 +26,7 @@ namespace QuizMaker
                         {
                             QuizCategory quizCategory = new QuizCategory(); // Object containing all category name and questions
 
-                            quizCategory.Name = UIMethod.GetCategoryName();  // Category name
+                            quizCategory.Name = UI.GetCategoryName();  // Category name
 
                             List<Question> questions = new List<Question>();
 
@@ -36,13 +36,13 @@ namespace QuizMaker
                             {
                                 Question question = new Question(); // Questions container
 
-                                question.Inquiry = UIMethod.GetQuestionInput();// Actual question
+                                question.Inquiry = UI.GetQuestionInput();// Actual question
 
-                                int numOfAnswers = UIMethod.GetNumOfAnswers();
+                                int numOfAnswers = UI.GetNumOfAnswers();
 
-                                List<string> answers = UIMethod.GetDecoyAnswers(numOfAnswers);
+                                List<string> answers = UI.GetDecoyAnswers(numOfAnswers);
 
-                                string correctAnswer = UIMethod.GetCorrectAnswer();
+                                string correctAnswer = UI.GetCorrectAnswer();
 
                                 answers.Add(correctAnswer);
 
@@ -54,13 +54,13 @@ namespace QuizMaker
 
                                 questions.Add(question);
 
-                                createNewQuestions = UIMethod.GetNewQuestion();
+                                createNewQuestions = UI.GetNewQuestion();
 
                             } while (createNewQuestions);
 
                             quizCategory.Questions = questions;
 
-                            createNewCategory = UIMethod.GetNewCategory();
+                            createNewCategory = UI.GetNewCategory();
 
                             FileUtils.SerializeCategoryToFile(quizCategory, questions);
 
@@ -75,11 +75,11 @@ namespace QuizMaker
 
                         List<Question> sectionQuestions = new List<Question>();
 
-                        UIMethod.ShowCategoryInquiry();
+                        UI.ShowCategoryInquiry();
 
                         string[] fileEntires = FileUtils.GetCategorySelection();
 
-                        string fileToPlay = UIMethod.GetSelectedFileName(fileEntires);
+                        string fileToPlay = UI.GetSelectedFileName(fileEntires);
 
                         quizSection = FileUtils.DeserializeFileToCategory(fileToPlay);
 
@@ -87,7 +87,7 @@ namespace QuizMaker
 
                         int correctAnswerCount = Logic.GetSumOfCorrectAnswer(sectionQuestions);
 
-                        UIMethod.ShowGradingResult(correctAnswerCount, sectionQuestions);
+                        UI.ShowGradingResult(correctAnswerCount, sectionQuestions);
                         break;
 
 
