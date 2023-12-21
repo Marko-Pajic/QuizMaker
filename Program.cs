@@ -9,81 +9,90 @@ namespace QuizMaker
         {
             UIMethod.ShowIntroAndQuizRules();
 
-            QuizState state = FileUtils.GetMenuOption();
-
-            if (state == QuizState.Build)
+            while (true)
             {
 
-                bool createNewCategory = false;
+                QuizState state = FileUtils.GetMenuOption();
 
-                do
+                switch (state)
                 {
-                    QuizCategory quizCategory = new QuizCategory(); // Object containing all category name and questions
 
-                    quizCategory.Name = UIMethod.GetCategoryName();  // Category name
+                    case QuizState.Build:
 
-                    List<Question> questions = new List<Question>();
+                        bool createNewCategory = false;
 
-                    bool createNewQuestions = false;
+                        do
+                        {
+                            QuizCategory quizCategory = new QuizCategory(); // Object containing all category name and questions
 
-                    do
-                    {
-                        Question question = new Question(); // Questions container
+                            quizCategory.Name = UIMethod.GetCategoryName();  // Category name
 
-                        question.Inquiry = UIMethod.GetQuestionInput();// Actual question
+                            List<Question> questions = new List<Question>();
 
-                        int numOfAnswers = UIMethod.GetNumOfAnswers();
+                            bool createNewQuestions = false;
 
-                        List<string> answers = UIMethod.GetDecoyAnswers(numOfAnswers);
+                            do
+                            {
+                                Question question = new Question(); // Questions container
 
-                        string correctAnswer = UIMethod.GetCorrectAnswer();
+                                question.Inquiry = UIMethod.GetQuestionInput();// Actual question
 
-                        answers.Add(correctAnswer);
+                                int numOfAnswers = UIMethod.GetNumOfAnswers();
 
-                        answers = Logic.GetIndexShuffle(answers);
+                                List<string> answers = UIMethod.GetDecoyAnswers(numOfAnswers);
 
-                        question.Answers = answers;
+                                string correctAnswer = UIMethod.GetCorrectAnswer();
 
-                        question.CorrectAnswerIndex = answers.IndexOf(correctAnswer);
+                                answers.Add(correctAnswer);
 
-                        questions.Add(question);
+                                answers = Logic.GetIndexShuffle(answers);
 
-                        createNewQuestions = UIMethod.GetNewQuestion();
+                                question.Answers = answers;
 
-                    } while (createNewQuestions);
+                                question.CorrectAnswerIndex = answers.IndexOf(correctAnswer);
 
-                    quizCategory.Questions = questions;
+                                questions.Add(question);
 
-                    createNewCategory = UIMethod.GetNewCategory();
+                                createNewQuestions = UIMethod.GetNewQuestion();
 
-                    FileUtils.SerializeCategoryToFile(quizCategory, questions);
+                            } while (createNewQuestions);
 
-                } while (createNewCategory);
+                            quizCategory.Questions = questions;
 
-                state = QuizState.Play;
-            }
+                            createNewCategory = UIMethod.GetNewCategory();
 
-            if (state == QuizState.Play)
-            {
-                QuizCategory quizCategory = new QuizCategory();
+                            FileUtils.SerializeCategoryToFile(quizCategory, questions);
 
-                List<Question> questions = new List<Question>();
+                        } while (createNewCategory);
 
-                UIMethod.ShowCategoryInquiry();
+                        break;
 
-                string[] fileEntires = FileUtils.GetCategorySelection();
 
-                string fileToPlay = UIMethod.GetSelectedFileName(fileEntires);
+                    case QuizState.Play:
 
-                quizCategory = FileUtils.DeserializeFileToCategory(fileToPlay);
+                        QuizCategory quizSection = new QuizCategory();
 
-                questions = quizCategory.Questions;
+                        List<Question> sectionQuestions = new List<Question>();
 
-                Question question = new Question();
+                        UIMethod.ShowCategoryInquiry();
 
-                int correctAnswer = Logic.GetSumOfCorrectAnswer(questions, question);
+                        string[] fileEntires = FileUtils.GetCategorySelection();
 
-                UIMethod.GetQuizGrades(correctAnswer, questions);
+                        string fileToPlay = UIMethod.GetSelectedFileName(fileEntires);
+
+                        quizSection = FileUtils.DeserializeFileToCategory(fileToPlay);
+
+                        sectionQuestions = quizSection.Questions;
+
+                        int accurateAnswer = Logic.GetSumOfCorrectAnswer(sectionQuestions);
+
+                        UIMethod.GetQuizGrades(accurateAnswer, sectionQuestions);
+                        break;
+
+
+                    case QuizState.Modify:
+                        break;
+                }
             }
         }
 

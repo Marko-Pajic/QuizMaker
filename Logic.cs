@@ -17,9 +17,11 @@
             return answers;
         }
 
-        public static int GetSumOfCorrectAnswer(List<Question> questions, Question question)
+        public static int GetSumOfCorrectAnswer(List<Question> questions)/*, Question question)*/
         {
             int correctAnswer = 0;
+
+            Question question = new Question();
 
             for (int qn = 0; qn < questions.Count; qn++)
             {
