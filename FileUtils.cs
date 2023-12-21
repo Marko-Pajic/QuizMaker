@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using QuizMaker.Enumerations;
 using System.Xml.Serialization;
 
 namespace QuizMaker

@@ -1,4 +1,6 @@
-﻿namespace QuizMaker
+﻿using QuizMaker.Enumerations;
+
+namespace QuizMaker
 {
     public static class UIMethod
     {
@@ -204,6 +206,6 @@
                 Console.WriteLine(QuizGrades.Failed);
             }
         }
- 
+
     }
 }
