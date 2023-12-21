@@ -173,7 +173,7 @@
             Console.WriteLine("That was your last question!");
         }
 
-        public static void GetQuizGrades(int correctAnswer, List<Question> questions)
+        public static void ShowGradingResult(int correctAnswer, List<Question> questions)
         {
             Console.WriteLine($"You had {correctAnswer} correct answers out of {questions.Count} questions.");
 
