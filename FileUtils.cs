@@ -22,7 +22,7 @@ namespace QuizMaker
             }
         }
 
-        public static void SerializeCategoryToFile(QuizCategory questionContainer, List<Question> categoryQuestions)
+        public static void SerializeCategoryToFile(QuizCategory questionContainer)
         {
             string directoryPath = Constant.DIRECTORY_FOLDER;
             string fileName = $@"{questionContainer.Name}.xml";
@@ -30,7 +30,7 @@ namespace QuizMaker
 
             Directory.CreateDirectory(directoryPath);
 
-            XmlSerializer serializer = new XmlSerializer(typeof(QuizCategory/*List<Question>*/));
+            XmlSerializer serializer = new XmlSerializer(typeof(QuizCategory));
             using (FileStream file = File.Create(filePath))
             {
                 serializer.Serialize(file, questionContainer);

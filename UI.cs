@@ -2,7 +2,7 @@
 
 namespace QuizMaker
 {
-    public static class UIMethod
+    public static class UI
     {
         /// <summary>
         /// displays intro and application instructions

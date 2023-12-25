@@ -24,9 +24,9 @@ namespace QuizMaker
 
                         do
                         {
-                            QuizCategory quizCategory = new QuizCategory(); // Object containing all category name and questions
+                            QuizCategory quizCategory = new QuizCategory();
 
-                            quizCategory.Name = UI.GetCategoryName();  // Category name
+                            quizCategory.Name = UI.GetCategoryName();
 
                             List<Question> questions = new List<Question>();
 
@@ -34,9 +34,9 @@ namespace QuizMaker
 
                             do
                             {
-                                Question question = new Question(); // Questions container
+                                Question question = new Question();
 
-                                question.Inquiry = UI.GetQuestionInput();// Actual question
+                                question.Inquiry = UI.GetQuestionInput();
 
                                 int numOfAnswers = UI.GetNumOfAnswers();
 
