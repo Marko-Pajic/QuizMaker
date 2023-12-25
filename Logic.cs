@@ -17,7 +17,7 @@
             return answers;
         }
 
-        public static int GetSumOfCorrectAnswer(List<Question> questions)/*, Question question)*/
+        public static int GetSumOfCorrectAnswer(List<Question> questions)
         {
             int correctAnswer = 0;
 

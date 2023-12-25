@@ -62,7 +62,7 @@ namespace QuizMaker
 
                             createNewCategory = UI.GetNewCategory();
 
-                            FileUtils.SerializeCategoryToFile(quizCategory, questions);
+                            FileUtils.SerializeCategoryToFile(quizCategory);
 
                         } while (createNewCategory);
 
@@ -87,7 +87,10 @@ namespace QuizMaker
 
                         int correctAnswerCount = Logic.GetSumOfCorrectAnswer(sectionQuestions);
 
-                        UI.ShowGradingResult(correctAnswerCount, sectionQuestions);
+                        int numberOfQuestions = sectionQuestions.Count;
+
+                        UI.ShowGradingResult(correctAnswerCount, numberOfQuestions);
+
                         break;
 
 

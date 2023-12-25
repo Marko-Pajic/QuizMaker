@@ -175,11 +175,11 @@ namespace QuizMaker
             Console.WriteLine("That was your last question!");
         }
 
-        public static void ShowGradingResult(int correctAnswer, List<Question> questions)
+        public static void ShowGradingResult(int correctAnswerCount, int numberOfQuestions)
         {
-            Console.WriteLine($"You had {correctAnswer} correct answers out of {questions.Count} questions.");
+            Console.WriteLine($"You had {correctAnswerCount} correct answers out of {numberOfQuestions} questions.");
 
-            double calResult = ((double)correctAnswer / questions.Count) * 100;
+            double calResult = ((double)correctAnswerCount / numberOfQuestions) * 100;
 
             Console.WriteLine($"Procentage: {calResult}%");
 
