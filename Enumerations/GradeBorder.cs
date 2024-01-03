@@ -2,10 +2,10 @@
 {
     public enum GradeBorder
     {
-        LowerBorderPassed = 50,
-        UpperBorderPassed = 60,
-        UpperBorderNice = 70,
-        UpperBorderSplendid = 80,
-        LowerBorderAwesome = 90
+        BorderFailed = 50,
+        BorderPassed = 60,
+        BorderNice = 70,
+        BorderSplendid = 80,
+        BorderAwesome = 90
     }
 }

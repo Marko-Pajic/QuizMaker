@@ -175,6 +175,11 @@ namespace QuizMaker
             Console.WriteLine("That was your last question!");
         }
 
+        public static bool IsAnswerCountWithinRange(int result, GradeBorder lowerBound, GradeBorder upperBound)
+        {
+            return result > (int)lowerBound && result <= (int)upperBound; 
+        }
+
         public static void ShowGradingResult(int correctAnswerCount, int numberOfQuestions)
         {
             Console.WriteLine($"You had {correctAnswerCount} correct answers out of {numberOfQuestions} questions.");
@@ -185,23 +190,23 @@ namespace QuizMaker
 
             int result = (int)Math.Floor(calResult);
 
-            if (result >= (int)GradeBorder.LowerBorderPassed && result <= (int)GradeBorder.UpperBorderPassed)
+            if (IsAnswerCountWithinRange(result, GradeBorder.BorderFailed, GradeBorder.BorderPassed))
             {
                 Console.WriteLine(QuizGrades.Passed);
             }
-            if (result > (int)GradeBorder.UpperBorderPassed && result <= (int)GradeBorder.UpperBorderNice)
+            if (IsAnswerCountWithinRange(result, GradeBorder.BorderPassed, GradeBorder.BorderNice))
             {
                 Console.WriteLine(QuizGrades.Nice);
             }
-            if (result > (int)GradeBorder.UpperBorderNice && result <= (int)GradeBorder.UpperBorderSplendid)
+            if (IsAnswerCountWithinRange(result, GradeBorder.BorderNice, GradeBorder.BorderSplendid))
             {
                 Console.WriteLine(QuizGrades.Splendid);
             }
-            if (result >= (int)GradeBorder.LowerBorderAwesome)
+            if (result >= (int)GradeBorder.BorderAwesome)
             {
                 Console.WriteLine(QuizGrades.Awesome);
             }
-            if (result < (int)GradeBorder.LowerBorderPassed)
+            if (result <= (int)GradeBorder.BorderFailed)
             {
                 Console.WriteLine(QuizGrades.Failed);
             }
