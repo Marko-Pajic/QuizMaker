@@ -180,6 +180,16 @@ namespace QuizMaker
             return result > (int)lowerBound && result <= (int)upperBound; 
         }
 
+        public static bool IsAnswerCountBelowRange(int result, GradeBorder lowerBound)
+        {
+            return result <= (int)lowerBound;
+        }
+
+        public static bool IsAnswerCountRemarkable(int result, GradeBorder upperBound)
+        {
+            return result >= (int)upperBound;
+        }
+
         public static void ShowGradingResult(int correctAnswerCount, int numberOfQuestions)
         {
             Console.WriteLine($"You had {correctAnswerCount} correct answers out of {numberOfQuestions} questions.");
@@ -190,26 +200,32 @@ namespace QuizMaker
 
             int result = (int)Math.Floor(calResult);
 
+            if (IsAnswerCountBelowRange(result, GradeBorder.BorderFailed))
+            {
+                Console.WriteLine(QuizGrades.Failed);
+                return;
+            }
+            if (IsAnswerCountRemarkable(result, GradeBorder.BorderAwesome))
+            {
+                Console.WriteLine(QuizGrades.Awesome);
+                return;
+            }
             if (IsAnswerCountWithinRange(result, GradeBorder.BorderFailed, GradeBorder.BorderPassed))
             {
                 Console.WriteLine(QuizGrades.Passed);
+                return;
             }
             if (IsAnswerCountWithinRange(result, GradeBorder.BorderPassed, GradeBorder.BorderNice))
             {
                 Console.WriteLine(QuizGrades.Nice);
+                return;
             }
             if (IsAnswerCountWithinRange(result, GradeBorder.BorderNice, GradeBorder.BorderSplendid))
             {
                 Console.WriteLine(QuizGrades.Splendid);
+                return;
             }
-            if (result >= (int)GradeBorder.BorderAwesome)
-            {
-                Console.WriteLine(QuizGrades.Awesome);
-            }
-            if (result <= (int)GradeBorder.BorderFailed)
-            {
-                Console.WriteLine(QuizGrades.Failed);
-            }
+   
         }
 
     }
