@@ -8,7 +8,7 @@ namespace QuizMaker
         /// <summary>
         /// searches for specific xml file
         /// </summary>
-        /// <returns>depending on file existence an appropriate enum</returns>
+        /// <returns>enum depending on file existence</returns>
         public static QuizState GetMenuOption()
         {
             bool fileExists = Directory.Exists(Constant.DIRECTORY_FOLDER);
@@ -22,6 +22,10 @@ namespace QuizMaker
             }
         }
 
+        /// <summary>
+        /// creates a new folder with new files populating them by serialization
+        /// </summary>
+        /// <param name="questionContainer">object</param>
         public static void SerializeCategoryToFile(QuizCategory questionContainer)
         {
             string directoryPath = Constant.DIRECTORY_FOLDER;
@@ -37,6 +41,10 @@ namespace QuizMaker
             }
         }
 
+        /// <summary>
+        /// uses GetFiles method to populate the array
+        /// </summary>
+        /// <returns>array of files</returns>
         public static string[] GetCategorySelection()
         {
             string filePath = Constant.DIRECTORY_FOLDER;
@@ -44,6 +52,11 @@ namespace QuizMaker
             return fileEntries;
         }
 
+        /// <summary>
+        /// creates new object and populizes it by deserialization of chosen file
+        /// </summary>
+        /// <param name="fileToPlay">file to deserialize</param>
+        /// <returns>object</returns>
         public static QuizCategory DeserializeFileToCategory(string fileToPlay)
         {
             QuizCategory categoryQuestions = new QuizCategory();

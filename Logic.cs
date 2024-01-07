@@ -3,6 +3,11 @@
     public class Logic
 
     {
+        /// <summary>
+        /// using Knuths algorithm to shuffle list of answers
+        /// </summary>
+        /// <param name="answers"></param>
+        /// <returns>list of answers</returns>
         public static List<string> GetIndexShuffle(List<string> answers)
         {
 
@@ -17,6 +22,11 @@
             return answers;
         }
 
+        /// <summary>
+        /// looping through list of questions and prompting for answers 
+        /// </summary>
+        /// <param name="questions"></param>
+        /// <returns>number of correct answers</returns>
         public static int GetSumOfCorrectAnswer(List<Question> questions)
         {
             int correctAnswer = 0;

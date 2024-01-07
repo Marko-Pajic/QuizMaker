@@ -39,7 +39,7 @@ namespace QuizMaker
         }
 
         /// <summary>
-        /// displays a string in form of a question
+        /// displays a string
         /// </summary>
         /// <returns>string in form of an answer</returns>
         public static string GetCategoryName()
@@ -103,6 +103,10 @@ namespace QuizMaker
             return correctAnswer;
         }
 
+        /// <summary>
+        /// displays question and input field
+        /// </summary>
+        /// <returns>boolean</returns>
         public static bool GetNewQuestion()
         {
             Console.WriteLine("Wanna add more questions");
@@ -113,6 +117,10 @@ namespace QuizMaker
 
         }
 
+        /// <summary>
+        /// displays question and input field
+        /// </summary>
+        /// <returns>boolean</returns>
         public static bool GetNewCategory()
         {
             Console.WriteLine("Wanna create new category?");
@@ -122,11 +130,20 @@ namespace QuizMaker
             return createNewCategory == Constant.POSITIVE_ANSWER;
         }
 
+
+        /// <summary>
+        /// displays a string
+        /// </summary>
         public static void ShowCategoryInquiry()
         {
             Console.WriteLine("Chose the category you would like to play");
         }
 
+        /// <summary>
+        /// Loops through array of files displaying them as option menu
+        /// </summary>
+        /// <param name="fileEntries">array of files</param>
+        /// <returns>chosen file</returns>
         public static string GetSelectedFileName(string[] fileEntries)
         {
             string fileEntry;
@@ -142,16 +159,29 @@ namespace QuizMaker
             return fileToPlay;
         }
 
+        /// <summary>
+        /// displays a quiz question  
+        /// </summary>
+        /// <param name="question">object where question is stored in propertie</param>
         public static void ShowCategoryQuestion(Question question)
         {
             Console.WriteLine(question.Inquiry);
         }
 
+        /// <summary>
+        /// displays incremented answers
+        /// </summary>
+        /// <param name="question">object where answers are stored in propertie</param>
+        /// <param name="ans">index position</param>
         public static void ShowAnswerOption(Question question, int ans)
         {
             Console.WriteLine($"{ans + 1} {question.Answers[ans]}");
         }
 
+        /// <summary>
+        /// displays input inqury for user 
+        /// </summary>
+        /// <returns>int substracted by 1 to relate to index position</returns>
         public static int GetAnswerPosition()
         {
             Console.WriteLine("Enter the number infront of the answer you think is right");
@@ -159,42 +189,78 @@ namespace QuizMaker
             return givenAnswer;
         }
 
+        /// <summary>
+        /// displays positive outcome message to user
+        /// </summary>
         public static void ShowAffirmingMessage()
         {
             Console.WriteLine("Thats correct!");
         }
 
+        /// <summary>
+        /// 1. displays negative outcome message to user
+        /// 2. displays correct option to user
+        /// </summary>
+        /// <param name="question">object from which correct option is extracted through index position</param>
         public static void ShowCorrectAnswer(Question question)
         {
             Console.WriteLine("Wrong answer");
             Console.WriteLine($"Correct answer is {question.Answers[question.CorrectAnswerIndex]}");
         }
 
+        /// <summary>
+        /// displays warning message to user
+        /// </summary>
         public static void ShowNotification()
         {
             Console.WriteLine("That was your last question!");
         }
 
+        /// <summary>
+        /// conditional expression method
+        /// </summary>
+        /// <param name="result">int representing user score of correct answers</param>
+        /// <param name="lowerBound">enum</param>
+        /// <param name="upperBound">enum</param>
+        /// <returns>boolean result of conditional expression</returns>
         public static bool IsAnswerCountWithinRange(int result, GradeBorder lowerBound, GradeBorder upperBound)
         {
             return result > (int)lowerBound && result <= (int)upperBound; 
         }
 
+        /// <summary>
+        /// conditional expression method
+        /// </summary>
+        /// <param name="result">int representing user score of correct answers</param>
+        /// <param name="lowerBound">enum</param>
+        /// <returns>boolean result of conditional expression</returns>
         public static bool IsAnswerCountBelowRange(int result, GradeBorder lowerBound)
         {
             return result <= (int)lowerBound;
         }
 
+        /// <summary>
+        /// conditional expression method
+        /// </summary>
+        /// <param name="result">int representing user score of correct answers</param>
+        /// <param name="upperBound">enum</param>
+        /// <returns>boolean result of conditional expression</returns>
         public static bool IsAnswerCountRemarkable(int result, GradeBorder upperBound)
         {
             return result >= (int)upperBound;
         }
 
+        /// <summary>
+        /// 1. calculates percentage of correct answers based on num of questions
+        /// 2. checks which condition is met and displays appropriate message using enums
+        /// </summary>
+        /// <param name="correctAnswerCount">number of correct answers</param>
+        /// <param name="numberOfQuestions">number of asked questions</param>
         public static void ShowGradingResult(int correctAnswerCount, int numberOfQuestions)
         {
             Console.WriteLine($"You had {correctAnswerCount} correct answers out of {numberOfQuestions} questions.");
 
-            double calResult = ((double)correctAnswerCount / numberOfQuestions) * 100;
+            double calResult = ((double)correctAnswerCount / numberOfQuestions) * Constant.PERCENTAGE_FACTOR;
 
             Console.WriteLine($"Procentage: {calResult}%");
 
