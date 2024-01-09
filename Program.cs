@@ -98,7 +98,7 @@ namespace QuizMaker
 
                         QuizCategory quizChapter = new QuizCategory();
 
-                        UI.ShowCategoryInquiry();
+                        UI.ShowSectionInquiry();
 
                         string[] categoryNames = FileUtils.GetCategorySelection();
 

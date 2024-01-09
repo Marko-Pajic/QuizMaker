@@ -294,7 +294,7 @@ namespace QuizMaker
 
         }
 
-        public static void ShowSectionInqury()
+        public static void ShowSectionInquiry()
         {
             Console.WriteLine("Lets start with category you would like to modify");
         }
