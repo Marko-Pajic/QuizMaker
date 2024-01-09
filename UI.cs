@@ -225,7 +225,7 @@ namespace QuizMaker
         /// <returns>boolean result of conditional expression</returns>
         public static bool IsAnswerCountWithinRange(int result, GradeBorder lowerBound, GradeBorder upperBound)
         {
-            return result > (int)lowerBound && result <= (int)upperBound; 
+            return result > (int)lowerBound && result <= (int)upperBound;
         }
 
         /// <summary>
@@ -291,7 +291,12 @@ namespace QuizMaker
                 Console.WriteLine(QuizGrades.Splendid);
                 return;
             }
-   
+
+        }
+
+        public static void ShowSectionInqury()
+        {
+            Console.WriteLine("Lets start with category you would like to modify");
         }
 
     }

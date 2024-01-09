@@ -95,6 +95,23 @@ namespace QuizMaker
 
 
                     case QuizState.Modify:
+
+                        QuizCategory quizChapter = new QuizCategory();
+
+                        UI.ShowCategoryInquiry();
+
+                        string[] categoryNames = FileUtils.GetCategorySelection();
+
+                        string fileToModify = UI.GetSelectedFileName(categoryNames);
+
+                        quizChapter = FileUtils.DeserializeFileToCategory(fileToModify);
+
+                        List<Question> chapterQuestions = new List<Question>();
+
+                        chapterQuestions = quizChapter.Questions;
+
+                        //Console.WriteLine("What would you like to modify:");
+
                         break;
                 }
             }
