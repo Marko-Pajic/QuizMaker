@@ -112,12 +112,37 @@ namespace QuizMaker
 
                         ModifySection option = UI.GetOptionSelection();
 
-                        switch(option)
-                        {
-                            case ModifySection.Name:
+                        bool endModification = true;
 
-                                break;
-                        }
+                        do
+                        {
+                            switch (option)
+                            {
+                                case ModifySection.Name:
+
+                                    quizChapter.Name = UI.GetCategoryModifiedName(quizChapter);
+
+                                    break;
+
+                                case ModifySection.Questions:
+
+                                    quizChapter.Questions = UI.GetModifiedQuestionInput(quizChapter);
+
+                                    break;
+
+                                case ModifySection.Answers:
+                                    break;
+
+                                case ModifySection.Exit:
+                                    endModification = false;
+                                    break;
+                            }
+
+                            FileUtils.SerializeCategoryToFile(quizChapter);
+
+                        } while (endModification);
+
+                       // quizChapter = ;
 
                         break;
                 }

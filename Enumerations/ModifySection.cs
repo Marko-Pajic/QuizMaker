@@ -10,6 +10,7 @@ namespace QuizMaker.Enumerations
     {
         Name,
         Questions,
-        Answers
+        Answers,
+        Exit
     }
 }

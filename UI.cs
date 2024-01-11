@@ -305,6 +305,7 @@ namespace QuizMaker
             Console.WriteLine("1. Category name");
             Console.WriteLine("2. Category questions");
             Console.WriteLine("3. Question answers");
+            Console.WriteLine("4. Exit");
             int optionMenu = int.Parse(Console.ReadLine());
             switch (optionMenu)
             {
@@ -314,11 +315,36 @@ namespace QuizMaker
                     return ModifySection.Questions;
                 case 3:
                     return ModifySection.Answers;
+                case 4:
+                    return ModifySection.Exit;
                 default:
                     Console.WriteLine("Invalid input. Please enter a number between 1 and 3.");
                     return GetOptionSelection();
             }
         }
+
+        public static string GetCategoryModifiedName(QuizCategory quizChapter)
+        {
+            Console.WriteLine($"Whats the new name for {quizChapter.Name} category?");
+            string questionNaire = Console.ReadLine();
+            return questionNaire;
+        }
+
+        public static List<Question> GetModifiedQuestionInput(QuizCategory quizChapter)
+        {
+            for (int i = 0; i < quizChapter.Questions.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}. {quizChapter.Questions[i]}");
+            }
+            Console.WriteLine("Which question would you like to change?");
+            Console.WriteLine("Write the new question...");
+            string question = Console.ReadLine();
+            
+
+            throw new NotImplementedException();
+        }
+
+
 
     }
 }
