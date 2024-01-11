@@ -299,5 +299,26 @@ namespace QuizMaker
             Console.WriteLine("Lets start with category you would like to modify");
         }
 
+        public static ModifySection GetOptionSelection()
+        {
+            Console.WriteLine("What would you like to modify:");
+            Console.WriteLine("1. Category name");
+            Console.WriteLine("2. Category questions");
+            Console.WriteLine("3. Question answers");
+            int optionMenu = int.Parse(Console.ReadLine());
+            switch (optionMenu)
+            {
+                case 1:
+                    return ModifySection.Name;
+                case 2:
+                    return ModifySection.Questions;
+                case 3:
+                    return ModifySection.Answers;
+                default:
+                    Console.WriteLine("Invalid input. Please enter a number between 1 and 3.");
+                    return GetOptionSelection();
+            }
+        }
+
     }
 }

@@ -110,7 +110,14 @@ namespace QuizMaker
 
                         chapterQuestions = quizChapter.Questions;
 
-                        //Console.WriteLine("What would you like to modify:");
+                        ModifySection option = UI.GetOptionSelection();
+
+                        switch(option)
+                        {
+                            case ModifySection.Name:
+
+                                break;
+                        }
 
                         break;
                 }
