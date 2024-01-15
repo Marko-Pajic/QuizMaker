@@ -12,7 +12,7 @@ namespace QuizMaker
         public static QuizState GetMenuOption()
         {
             bool fileExists = Directory.Exists(Constant.DIRECTORY_FOLDER);
-            if (fileExists != false)
+            if (fileExists)
             {
                 return UI.GetOptionPreferences();
             }

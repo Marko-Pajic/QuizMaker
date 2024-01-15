@@ -106,9 +106,9 @@ namespace QuizMaker
 
                         quizChapter = FileUtils.DeserializeFileToCategory(fileToModify);
 
-                        List<Question> chapterQuestions = new List<Question>();
+                        List<Question> chapterQuestions = new List<Question>();/* Consider to remove*/
 
-                        chapterQuestions = quizChapter.Questions;
+                        chapterQuestions = quizChapter.Questions;/* Consider to remove*/
 
                         ModifySection option = UI.GetOptionSelection();
 
