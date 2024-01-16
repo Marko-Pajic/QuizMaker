@@ -121,7 +121,7 @@ namespace QuizMaker
             Console.WriteLine("Answer with y or n");
             char createNewQuestions = Console.ReadKey().KeyChar;
 
-            return createNewQuestions == Constant.POSITIVE_ANSWER;
+            return Constant.POSITIVE_ANSWER.Equals(createNewQuestions);
 
         }
 
@@ -135,7 +135,7 @@ namespace QuizMaker
             Console.WriteLine("Answer with y or n");
             char createNewCategory = Console.ReadKey().KeyChar;
 
-            return createNewCategory == Constant.POSITIVE_ANSWER;
+            return Constant.POSITIVE_ANSWER.Equals(createNewCategory);
         }
 
 
