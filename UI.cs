@@ -67,8 +67,16 @@ namespace QuizMaker
         public static int GetNumOfAnswers()
         {
             Console.Write("Enter the number of answers: ");
-            int numOfAnswers = int.Parse(Console.ReadLine());
-            return numOfAnswers;
+            int numOfAnswers;
+            if (int.TryParse(Console.ReadLine(), out numOfAnswers))
+            {
+                return numOfAnswers;
+            }
+            else
+            {
+               Console.WriteLine("Incorrect input.");
+                return GetNumOfAnswers();
+            }
         }
 
         /// <summary>
@@ -339,7 +347,7 @@ namespace QuizMaker
             Console.WriteLine("Which question would you like to change?");
             Console.WriteLine("Write the new question...");
             string question = Console.ReadLine();
-            
+
 
             throw new NotImplementedException();
         }
