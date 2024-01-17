@@ -88,7 +88,8 @@ namespace QuizMaker
         {
             int incorrectAnswerCount = 0;
             List<string> answers = new List<string>();
-
+            Console.WriteLine("Lets fill in the decoy/incorrect answers first!");
+            Console.WriteLine("Decoy/incorrect answers:");
             do
             {
                 incorrectAnswerCount++;
@@ -106,7 +107,9 @@ namespace QuizMaker
         /// <returns>string in form of an answer</returns>
         public static string GetCorrectAnswer()
         {
-            Console.Write("Write down the correct answer to your question: ");
+            Console.WriteLine("Lets move to the correct answer!");
+            Console.WriteLine("Correct answer:");
+            Console.Write("Enter answer:");
             string correctAnswer = Console.ReadLine();
             return correctAnswer;
         }
