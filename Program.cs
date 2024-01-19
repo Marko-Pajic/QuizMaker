@@ -110,27 +110,37 @@ namespace QuizMaker
 
                         chapterQuestions = quizChapter.Questions;/* Consider to remove*/
 
-                        ModifySection option = UI.GetOptionSelection();
-
                         bool endModification = true;
 
                         do
                         {
+                            bool nameModified = false;
+                            bool QorAModified = false;
+
+                            ModifySection option = UI.GetOptionSelection();
+
                             switch (option)
                             {
                                 case ModifySection.Name:
 
-                                    quizChapter.Name = UI.GetCategoryModifiedName(quizChapter);
-
+                                    string newName = UI.GetCategoryModifiedName(quizChapter);
+                                    if (newName != quizChapter.Name)
+                                    {
+                                        quizChapter.Name = newName;
+                                        nameModified = true;
+                                    }
                                     break;
 
                                 case ModifySection.Questions:
 
-                                    quizChapter.Questions = UI.GetModifiedQuestionInput(quizChapter);
-
+                                    quizChapter.Questions = UI.GetModifiedQuestionInput(chapterQuestions);
+                                    /* Write a condition*/
+                                    QorAModified = true;
                                     break;
 
                                 case ModifySection.Answers:
+                                    /*Write a condition*/
+                                    QorAModified = true;
                                     break;
 
                                 case ModifySection.Exit:
@@ -138,7 +148,14 @@ namespace QuizMaker
                                     break;
                             }
 
-                            FileUtils.SerializeCategoryToFile(quizChapter);
+                            if (nameModified)
+                            {
+                                FileUtils.UpdateAndSerializeNewCategoryName(quizChapter, fileToModify);
+                            }
+                            if (QorAModified)
+                            {
+                                FileUtils.SerializeModifiedCategoryToFile(quizChapter, fileToModify);
+                            }
 
                         } while (endModification);
 

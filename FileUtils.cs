@@ -59,15 +59,40 @@ namespace QuizMaker
         /// <returns>object</returns>
         public static QuizCategory DeserializeFileToCategory(string fileToPlay)
         {
-            QuizCategory categoryQuestions = new QuizCategory();
+            QuizCategory quizChapter = new QuizCategory();
 
             XmlSerializer serializer = new XmlSerializer(typeof(QuizCategory));
 
             using (FileStream file = File.OpenRead(fileToPlay))
             {
-                categoryQuestions = serializer.Deserialize(file) as QuizCategory;
+                quizChapter = serializer.Deserialize(file) as QuizCategory;
             }
-            return categoryQuestions;
+            return quizChapter;
         }
+
+        public static void SerializeModifiedCategoryToFile(QuizCategory quizChapter, string filePath)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(QuizCategory));
+            using (FileStream file = File.Create(filePath))
+            {
+                serializer.Serialize(file, quizChapter);
+            }
+        }
+
+        public static void UpdateAndSerializeNewCategoryName(QuizCategory quizChapter, string oldFilePath)
+        {
+            string directoryPath = Constant.DIRECTORY_FOLDER;
+            string newFileName = $"{quizChapter.Name}.xml";
+            string newFilePath = Path.Combine(directoryPath, newFileName);
+
+            XmlSerializer serializer = new XmlSerializer(typeof(QuizCategory));
+            using (FileStream file = File.Create(newFilePath))
+            {
+                serializer.Serialize(file, quizChapter);
+            }
+
+            File.Delete(oldFilePath);
+        }
+
     }
 }

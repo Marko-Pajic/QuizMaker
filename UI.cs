@@ -341,18 +341,19 @@ namespace QuizMaker
             return questionNaire;
         }
 
-        public static List<Question> GetModifiedQuestionInput(QuizCategory quizChapter)
+        public static List<Question> GetModifiedQuestionInput(List<Question> chapterQuestions)
         {
-            for (int i = 0; i < quizChapter.Questions.Count; i++)
+            for (int i = 0; i < chapterQuestions.Count; i++)
             {
-                Console.WriteLine($"{i + 1}. {quizChapter.Questions[i]}");
+                Console.WriteLine($"{i + 1}. {chapterQuestions[i]}");
             }
+
             Console.WriteLine("Which question would you like to change?");
+            int questionPosition = int.Parse(Console.ReadLine()) - 1;
             Console.WriteLine("Write the new question...");
-            string question = Console.ReadLine();
+            chapterQuestions[questionPosition].Inquiry = Console.ReadLine();
 
-
-            throw new NotImplementedException();
+            return chapterQuestions;
         }
 
 
