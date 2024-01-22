@@ -74,7 +74,7 @@ namespace QuizMaker
             }
             else
             {
-               Console.WriteLine("Incorrect input.");
+                Console.WriteLine("Incorrect input.");
                 return GetNumOfAnswers();
             }
         }
@@ -354,6 +354,35 @@ namespace QuizMaker
             chapterQuestions[questionPosition].Inquiry = Console.ReadLine();
 
             return chapterQuestions;
+        }
+
+        public static List<string> GetModifiedAnswer(List<Question> chapterQuestions)
+        {
+            for (int i = 0; i < chapterQuestions.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}. {chapterQuestions[i]}");
+            }
+
+            Console.WriteLine("Answers to which question would you like to change?");
+            int questionPosition = int.Parse(Console.ReadLine()) - 1;
+            List<string> answers = new List<string>();
+
+            answers = chapterQuestions[questionPosition].Answers;
+
+            for (int ans = 0; ans < answers.Count; ans++)
+            {
+                Console.WriteLine($"{ans + 1}. {answers[ans]}");
+            }
+
+            int correctAnswerIndex = chapterQuestions[questionPosition].CorrectAnswerIndex;
+            Console.WriteLine($"{answers[correctAnswerIndex]} is a current correct answer!");
+
+            Console.WriteLine("Which answer would you like to change?");
+            int answerPosition = int.Parse(Console.ReadLine()) - 1;
+            Console.WriteLine("Write the new answer...");
+            answers[answerPosition] = Console.ReadLine();
+
+            return answers;
         }
 
 

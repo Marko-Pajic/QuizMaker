@@ -110,6 +110,8 @@ namespace QuizMaker
 
                         chapterQuestions = quizChapter.Questions;/* Consider to remove*/
 
+                        Question inquiry = new Question();
+
                         bool endModification = true;
 
                         do
@@ -139,6 +141,8 @@ namespace QuizMaker
                                     break;
 
                                 case ModifySection.Answers:
+
+                                    inquiry.Answers = UI.GetModifiedAnswer(chapterQuestions);
                                     /*Write a condition*/
                                     QorAModified = true;
                                     break;
