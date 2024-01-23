@@ -1,4 +1,5 @@
 ﻿using QuizMaker.Enumerations;
+using System.Reflection.Metadata.Ecma335;
 
 namespace QuizMaker
 {
@@ -67,8 +68,7 @@ namespace QuizMaker
         public static int GetNumOfAnswers()
         {
             Console.Write("Enter the number of answers: ");
-            int numOfAnswers;
-            if (int.TryParse(Console.ReadLine(), out numOfAnswers))
+            if (int.TryParse(Console.ReadLine(), out int numOfAnswers))
             {
                 return numOfAnswers;
             }
@@ -165,9 +165,17 @@ namespace QuizMaker
                 Console.WriteLine($"{i + 1}.{Path.GetFileNameWithoutExtension(fileEntry)}");
             }
 
-            int numOfChosenCategory = int.Parse(Console.ReadLine());
-            string fileToPlay = fileEntries[numOfChosenCategory - 1];
-            return fileToPlay;
+            int numOfChosenCategory;
+            if (int.TryParse(Console.ReadLine(), out numOfChosenCategory) && numOfChosenCategory >= 1 && numOfChosenCategory <= fileEntries.Length)
+            {
+                string fileToPlay = fileEntries[numOfChosenCategory - 1];
+                return fileToPlay;
+            }
+            else
+            {
+                Console.WriteLine("Incorrect input.");
+                return GetSelectedFileName(fileEntries);
+            }
         }
 
         /// <summary>
@@ -196,8 +204,15 @@ namespace QuizMaker
         public static int GetAnswerPosition()
         {
             Console.WriteLine("Enter the number infront of the answer you think is right");
-            int givenAnswer = int.Parse(Console.ReadLine()) - 1;
-            return givenAnswer;
+            if (int.TryParse(Console.ReadLine(), out int givenAnswer))
+            {
+                return givenAnswer - 1;
+            }
+            else
+            {
+                Console.WriteLine("Incorrect input!");
+                return GetAnswerPosition();
+            }
         }
 
         /// <summary>
@@ -329,7 +344,7 @@ namespace QuizMaker
                 case 4:
                     return ModifySection.Exit;
                 default:
-                    Console.WriteLine("Invalid input. Please enter a number between 1 and 3.");
+                    Console.WriteLine("Invalid input. Please enter a number between 1 and 4.");
                     return GetOptionSelection();
             }
         }
@@ -343,17 +358,58 @@ namespace QuizMaker
 
         public static List<Question> GetModifiedQuestionInput(List<Question> chapterQuestions)
         {
+            Console.WriteLine("Questions:");
             for (int i = 0; i < chapterQuestions.Count; i++)
             {
                 Console.WriteLine($"{i + 1}. {chapterQuestions[i]}");
             }
 
             Console.WriteLine("Which question would you like to change?");
-            int questionPosition = int.Parse(Console.ReadLine()) - 1;
-            Console.WriteLine("Write the new question...");
-            chapterQuestions[questionPosition].Inquiry = Console.ReadLine();
+            //int questionPosition = int.Parse(Console.ReadLine()) - 1;
+            //Console.WriteLine("Write the new question...");
+            //chapterQuestions[questionPosition].Inquiry = Console.ReadLine();
 
-            return chapterQuestions;
+            //return chapterQuestions;
+
+            //if (int.TryParse(Console.ReadLine(), out int questionPosition))
+            //{
+            //    questionPosition -= 1;
+            //    if (questionPosition >= 0 && questionPosition < chapterQuestions.Count)
+            //    {
+            //        Console.WriteLine("Write the new question...");
+            //        chapterQuestions[questionPosition].Inquiry = Console.ReadLine();
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("Invalid question number.");
+            //    }
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Invalid input. Please enter a number.");
+            //}
+
+            while (int.TryParse(Console.ReadLine(), out int questionPosition))
+            {
+                questionPosition -= 1;
+                bool insideRange = questionPosition >= 0 && questionPosition < chapterQuestions.Count;
+                if (insideRange)
+                {
+                    Console.WriteLine("Write the new question...");
+                    chapterQuestions[questionPosition].Inquiry = Console.ReadLine();
+                    return chapterQuestions;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid question number.");
+                    Console.WriteLine("Please enter the number standing before desired question.");
+                    continue;
+                }
+            }
+
+            Console.WriteLine("Invalid input. Please enter a number.");
+            return GetModifiedQuestionInput(chapterQuestions);
+
         }
 
         public static List<string> GetModifiedAnswer(List<Question> chapterQuestions)

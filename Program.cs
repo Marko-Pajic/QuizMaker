@@ -160,7 +160,7 @@ namespace QuizMaker
                             {
                                 FileUtils.SerializeModifiedCategoryToFile(quizChapter, fileToModify);
                             }
-
+                            /* Data saved*/
                         } while (endModification);
 
                        // quizChapter = ;
