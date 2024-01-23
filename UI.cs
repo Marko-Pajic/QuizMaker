@@ -359,41 +359,18 @@ namespace QuizMaker
         public static List<Question> GetModifiedQuestionInput(List<Question> chapterQuestions)
         {
             Console.WriteLine("Questions:");
+
             for (int i = 0; i < chapterQuestions.Count; i++)
             {
                 Console.WriteLine($"{i + 1}. {chapterQuestions[i]}");
             }
 
             Console.WriteLine("Which question would you like to change?");
-            //int questionPosition = int.Parse(Console.ReadLine()) - 1;
-            //Console.WriteLine("Write the new question...");
-            //chapterQuestions[questionPosition].Inquiry = Console.ReadLine();
-
-            //return chapterQuestions;
-
-            //if (int.TryParse(Console.ReadLine(), out int questionPosition))
-            //{
-            //    questionPosition -= 1;
-            //    if (questionPosition >= 0 && questionPosition < chapterQuestions.Count)
-            //    {
-            //        Console.WriteLine("Write the new question...");
-            //        chapterQuestions[questionPosition].Inquiry = Console.ReadLine();
-            //    }
-            //    else
-            //    {
-            //        Console.WriteLine("Invalid question number.");
-            //    }
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Invalid input. Please enter a number.");
-            //}
 
             while (int.TryParse(Console.ReadLine(), out int questionPosition))
             {
                 questionPosition -= 1;
-                bool insideRange = questionPosition >= 0 && questionPosition < chapterQuestions.Count;
-                if (insideRange)
+                if (questionPosition >= 0 && questionPosition < chapterQuestions.Count)
                 {
                     Console.WriteLine("Write the new question...");
                     chapterQuestions[questionPosition].Inquiry = Console.ReadLine();
