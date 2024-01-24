@@ -166,6 +166,9 @@ namespace QuizMaker
                        // quizChapter = ;
 
                         break;
+
+                        case QuizState.Exit:
+                        break;
                 }
             }
         }

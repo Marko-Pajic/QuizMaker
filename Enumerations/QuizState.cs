@@ -4,6 +4,7 @@
     {
         Build,
         Play,
-        Modify
+        Modify,
+        Exit
     }
 }

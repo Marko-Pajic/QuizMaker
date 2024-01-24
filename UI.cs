@@ -24,19 +24,28 @@ namespace QuizMaker
             Console.WriteLine("1. Create new Quiz");
             Console.WriteLine("2. Play the Quiz");
             Console.WriteLine("3. Modify the current Quiz");
-            int optionMenu = int.Parse(Console.ReadLine());
-            switch (optionMenu)
+            Console.WriteLine("4. Exit QuizMaker");
+            if (int.TryParse(Console.ReadLine(), out int optionMenu))
             {
-                case 1:
-                    return QuizState.Build;
-                case 2:
-                    return QuizState.Play;
-                case 3:
-                    return QuizState.Modify;
-                default:
-                    Console.WriteLine("Invalid input. Please enter a number between 1 and 3.");
-                    return GetOptionPreferences();
+                switch (optionMenu)
+                {
+                    case 1:
+                        return QuizState.Build;
+                    case 2:
+                        return QuizState.Play;
+                    case 3:
+                        return QuizState.Modify;
+                    case 4:
+                        return QuizState.Exit;
+                }
             }
+            ShowWrongInputMessage();
+            return GetOptionPreferences();
+        }
+
+        public static void ShowWrongInputMessage() 
+        {
+            Console.WriteLine("Invalid input. Please enter a number between 1 and 4.");
         }
 
         /// <summary>
@@ -332,21 +341,23 @@ namespace QuizMaker
             Console.WriteLine("2. Category questions");
             Console.WriteLine("3. Question answers");
             Console.WriteLine("4. Exit");
-            int optionMenu = int.Parse(Console.ReadLine());
-            switch (optionMenu)
+
+            if (int.TryParse(Console.ReadLine(), out int optionMenu))
             {
-                case 1:
-                    return ModifySection.Name;
-                case 2:
-                    return ModifySection.Questions;
-                case 3:
-                    return ModifySection.Answers;
-                case 4:
-                    return ModifySection.Exit;
-                default:
-                    Console.WriteLine("Invalid input. Please enter a number between 1 and 4.");
-                    return GetOptionSelection();
+                switch (optionMenu)
+                {
+                    case 1:
+                        return ModifySection.Name;
+                    case 2:
+                        return ModifySection.Questions;
+                    case 3:
+                        return ModifySection.Answers;
+                    case 4:
+                        return ModifySection.Exit;
+                }
             }
+            ShowWrongInputMessage();
+            return GetOptionSelection();
         }
 
         public static string GetCategoryModifiedName(QuizCategory quizChapter)
