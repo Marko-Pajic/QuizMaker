@@ -96,6 +96,10 @@ namespace QuizMaker
 
                     case QuizState.Modify:
 
+                        List<QuizCategory> quizCategories = new List<QuizCategory>();
+
+                        var x = quizCategories.Where(q => q.Name == "Food");
+
                         QuizCategory quizChapter = new QuizCategory();
 
                         UI.ShowSectionInquiry();
@@ -111,6 +115,8 @@ namespace QuizMaker
                         chapterQuestions = quizChapter.Questions;/* Consider to remove*/
 
                         Question inquiry = new Question();
+
+                        //inquiry.Answers = 
 
                         bool endModification = true;
 
@@ -135,16 +141,18 @@ namespace QuizMaker
 
                                 case ModifySection.Questions:
 
-                                    quizChapter.Questions = UI.GetModifiedQuestionInput(chapterQuestions);
-                                    /* Write a condition*/
-                                    QorAModified = true;
+                                    List<Question> newQuestions = UI.GetModifiedQuestionInput(chapterQuestions);
+                                    if (!newQuestions.SequenceEqual(quizChapter.Questions))
+                                    {
+                                        quizChapter.Questions = newQuestions;
+                                        QorAModified = true;
+                                    }
                                     break;
 
                                 case ModifySection.Answers:
 
-                                    inquiry.Answers = UI.GetModifiedAnswer(chapterQuestions);
-                                    /*Write a condition*/
-                                    QorAModified = true;
+                                    inquiry.Answers = UI.GetCurrentAnswerList(chapterQuestions);
+                                    QorAModified = UI.GetModifiedAnswerList(inquiry.Answers);
                                     break;
 
                                 case ModifySection.Exit:

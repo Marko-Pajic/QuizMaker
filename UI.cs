@@ -1,5 +1,6 @@
 ﻿using QuizMaker.Enumerations;
 using System.Reflection.Metadata.Ecma335;
+using System.Xml;
 
 namespace QuizMaker
 {
@@ -43,7 +44,7 @@ namespace QuizMaker
             return GetOptionPreferences();
         }
 
-        public static void ShowWrongInputMessage() 
+        public static void ShowWrongInputMessage()
         {
             Console.WriteLine("Invalid input. Please enter a number between 1 and 4.");
         }
@@ -400,33 +401,61 @@ namespace QuizMaker
 
         }
 
-        public static List<string> GetModifiedAnswer(List<Question> chapterQuestions)
+        public static List<string> GetCurrentAnswerList(List<Question> chapterQuestions)
         {
-            for (int i = 0; i < chapterQuestions.Count; i++)
+            for (int qn = 0; qn < chapterQuestions.Count; qn++)
             {
-                Console.WriteLine($"{i + 1}. {chapterQuestions[i]}");
+                Console.WriteLine($"{qn + 1}. {chapterQuestions[qn]}");
             }
-
             Console.WriteLine("Answers to which question would you like to change?");
-            int questionPosition = int.Parse(Console.ReadLine()) - 1;
-            List<string> answers = new List<string>();
 
-            answers = chapterQuestions[questionPosition].Answers;
-
-            for (int ans = 0; ans < answers.Count; ans++)
+            if (int.TryParse(Console.ReadLine(), out int questionPosition))
             {
-                Console.WriteLine($"{ans + 1}. {answers[ans]}");
+                List<string> answers = new List<string>();
+                questionPosition -= 1;
+                answers = chapterQuestions[questionPosition].Answers;
+
+                for (int ans = 0; ans < answers.Count; ans++)
+                {
+                    Console.WriteLine($"{ans + 1}. {answers[ans]}");
+                }
+
+                int correctAnswerIndex = chapterQuestions[questionPosition].CorrectAnswerIndex;
+                Console.WriteLine($"{answers[correctAnswerIndex]} is a current correct answer!");
+
+                return answers;
             }
+            else
+            {
+                Console.WriteLine();
+                return GetCurrentAnswerList(chapterQuestions);
+            }
+        }
 
-            int correctAnswerIndex = chapterQuestions[questionPosition].CorrectAnswerIndex;
-            Console.WriteLine($"{answers[correctAnswerIndex]} is a current correct answer!");
-
+        public static bool GetModifiedAnswerList(List<string> answers)
+        {
+            bool modified = false;
             Console.WriteLine("Which answer would you like to change?");
-            int answerPosition = int.Parse(Console.ReadLine()) - 1;
-            Console.WriteLine("Write the new answer...");
-            answers[answerPosition] = Console.ReadLine();
+            if (int.TryParse(Console.ReadLine(), out int answerPosition))
+            {
+                Console.WriteLine("Write the new answer...");
+                string response = Console.ReadLine();
+                answerPosition -= 1;
 
-            return answers;
+                if (response != answers[answerPosition])
+                {
+                    modified = true;
+                    answers[answerPosition] = response;
+                }
+
+                return modified;
+
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter a number.");
+                return GetModifiedAnswerList(answers);
+            }
         }
 
 
