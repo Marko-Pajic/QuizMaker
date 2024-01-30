@@ -368,7 +368,7 @@ namespace QuizMaker
             return questionNaire;
         }
 
-        public static List<Question> GetModifiedQuestionInput(List<Question> chapterQuestions)
+        public static bool IsQuestionModified(List<Question> chapterQuestions)
         {
             Console.WriteLine("Questions:");
 
@@ -381,12 +381,20 @@ namespace QuizMaker
 
             while (int.TryParse(Console.ReadLine(), out int questionPosition))
             {
+                bool modified = false;
                 questionPosition -= 1;
                 if (questionPosition >= 0 && questionPosition < chapterQuestions.Count)
                 {
                     Console.WriteLine("Write the new question...");
-                    chapterQuestions[questionPosition].Inquiry = Console.ReadLine();
-                    return chapterQuestions;
+                    string response = Console.ReadLine();
+
+                    if (response != chapterQuestions[questionPosition].Inquiry)
+                    {
+                        modified = true;
+                        chapterQuestions[questionPosition].Inquiry = response;
+                    }
+
+                    return modified;
                 }
                 else
                 {
@@ -397,7 +405,7 @@ namespace QuizMaker
             }
 
             Console.WriteLine("Invalid input. Please enter a number.");
-            return GetModifiedQuestionInput(chapterQuestions);
+            return IsQuestionModified(chapterQuestions);
 
         }
 

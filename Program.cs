@@ -141,12 +141,7 @@ namespace QuizMaker
 
                                 case ModifySection.Questions:
 
-                                    List<Question> newQuestions = UI.GetModifiedQuestionInput(chapterQuestions);
-                                    if (!newQuestions.SequenceEqual(quizChapter.Questions))
-                                    {
-                                        quizChapter.Questions = newQuestions;
-                                        QorAModified = true;
-                                    }
+                                    QorAModified = UI.IsQuestionModified(chapterQuestions);
                                     break;
 
                                 case ModifySection.Answers:
@@ -156,6 +151,7 @@ namespace QuizMaker
                                     break;
 
                                 case ModifySection.Exit:
+
                                     endModification = false;
                                     break;
                             }
