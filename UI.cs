@@ -432,7 +432,7 @@ namespace QuizMaker
             }
         }
 
-        public static bool GetModifiedAnswerList(List<string> answers)
+        public static bool IsAnswerModified(List<string> answers)
         {
             bool modified = false;
             Console.WriteLine("Which answer would you like to change?");
@@ -454,7 +454,7 @@ namespace QuizMaker
             else
             {
                 Console.WriteLine("Invalid input. Please enter a number.");
-                return GetModifiedAnswerList(answers);
+                return IsAnswerModified(answers);
             }
         }
 

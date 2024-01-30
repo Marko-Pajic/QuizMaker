@@ -152,7 +152,7 @@ namespace QuizMaker
                                 case ModifySection.Answers:
 
                                     inquiry.Answers = UI.GetCurrentAnswerList(chapterQuestions);
-                                    QorAModified = UI.GetModifiedAnswerList(inquiry.Answers);
+                                    QorAModified = UI.IsAnswerModified(inquiry.Answers);
                                     break;
 
                                 case ModifySection.Exit:
