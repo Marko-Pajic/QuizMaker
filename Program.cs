@@ -132,11 +132,7 @@ namespace QuizMaker
                                 case ModifySection.Name:
 
                                     string newName = UI.GetCategoryModifiedName(quizChapter);
-                                    if (newName != quizChapter.Name)
-                                    {
-                                        quizChapter.Name = newName;
-                                        nameModified = true;
-                                    }
+                                    nameModified = UI.IsNameModified(newName, quizChapter);
                                     break;
 
                                 case ModifySection.Questions:

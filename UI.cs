@@ -368,6 +368,19 @@ namespace QuizMaker
             return questionNaire;
         }
 
+        public static bool IsNameModified(string newName, QuizCategory quizChapter)
+        {
+            bool modified = false;
+
+            if (newName != quizChapter.Name)
+            {
+                quizChapter.Name = newName;
+                modified = true;
+            }
+
+            return modified;
+        }
+
         public static int GetQuestionIndex(List<Question> chapterQuestions)
         {
             Console.WriteLine("Questions:");
