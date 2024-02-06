@@ -10,7 +10,9 @@ namespace QuizMaker
         {
             UI.ShowIntroAndQuizRules();
 
-            while (true)
+            bool runningProgram = true;
+
+            while (runningProgram)
             {
 
                 QuizState state = FileUtils.GetMenuOption();
@@ -171,6 +173,8 @@ namespace QuizMaker
                         break;
 
                         case QuizState.Exit:
+
+                        runningProgram = false;
                         break;
                 }
             }
