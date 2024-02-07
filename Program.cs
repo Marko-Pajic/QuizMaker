@@ -175,6 +175,7 @@ namespace QuizMaker
                         case QuizState.Exit:
 
                         runningProgram = false;
+                        // Goodbye note!
                         break;
                 }
             }

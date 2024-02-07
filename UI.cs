@@ -21,27 +21,30 @@ namespace QuizMaker
         /// <returns>enum of the chosen option</returns>
         public static QuizState GetOptionPreferences()
         {
-            Console.WriteLine("Choose from one of following options:");
-            Console.WriteLine("1. Create new Quiz");
-            Console.WriteLine("2. Play the Quiz");
-            Console.WriteLine("3. Modify the current Quiz");
-            Console.WriteLine("4. Exit QuizMaker");
-            if (int.TryParse(Console.ReadLine(), out int optionMenu))
+            while (true)
             {
-                switch (optionMenu)
+                Console.WriteLine("Choose from one of following options:");
+                Console.WriteLine("1. Create new Quiz");
+                Console.WriteLine("2. Play the Quiz");
+                Console.WriteLine("3. Modify the current Quiz");
+                Console.WriteLine("4. Exit QuizMaker");
+
+                if (int.TryParse(Console.ReadLine(), out int optionMenu))
                 {
-                    case 1:
-                        return QuizState.Build;
-                    case 2:
-                        return QuizState.Play;
-                    case 3:
-                        return QuizState.Modify;
-                    case 4:
-                        return QuizState.Exit;
+                    switch (optionMenu)
+                    {
+                        case 1:
+                            return QuizState.Build;
+                        case 2:
+                            return QuizState.Play;
+                        case 3:
+                            return QuizState.Modify;
+                        case 4:
+                            return QuizState.Exit;
+                    }
                 }
+                ShowWrongInputMessage();
             }
-            ShowWrongInputMessage();
-            return GetOptionPreferences();
         }
 
         public static void ShowWrongInputMessage()
@@ -77,15 +80,14 @@ namespace QuizMaker
         /// <returns>integer in form of an answer</returns>
         public static int GetNumOfAnswers()
         {
-            Console.Write("Enter the number of answers: ");
-            if (int.TryParse(Console.ReadLine(), out int numOfAnswers))
+            while (true)
             {
-                return numOfAnswers;
-            }
-            else
-            {
+                Console.Write("Enter the number of answers: ");
+                if (int.TryParse(Console.ReadLine(), out int numOfAnswers))
+                {
+                    return numOfAnswers;
+                }
                 Console.WriteLine("Incorrect input.");
-                return GetNumOfAnswers();
             }
         }
 
@@ -168,23 +170,25 @@ namespace QuizMaker
         public static string GetSelectedFileName(string[] fileEntries)
         {
             string fileEntry;
-
-            for (int i = 0; i < fileEntries.Length; i++)
-            {
-                fileEntry = fileEntries[i];
-                Console.WriteLine($"{i + 1}.{Path.GetFileNameWithoutExtension(fileEntry)}");
-            }
-
             int numOfChosenCategory;
-            if (int.TryParse(Console.ReadLine(), out numOfChosenCategory) && numOfChosenCategory >= 1 && numOfChosenCategory <= fileEntries.Length)
+
+            while (true)
             {
-                string fileToPlay = fileEntries[numOfChosenCategory - 1];
-                return fileToPlay;
-            }
-            else
-            {
-                Console.WriteLine("Incorrect input.");
-                return GetSelectedFileName(fileEntries);
+                for (int i = 0; i < fileEntries.Length; i++)
+                {
+                    fileEntry = fileEntries[i];
+                    Console.WriteLine($"{i + 1}.{Path.GetFileNameWithoutExtension(fileEntry)}");
+                }
+
+                if (int.TryParse(Console.ReadLine(), out numOfChosenCategory))
+                {
+                    if (numOfChosenCategory >= 1 && numOfChosenCategory <= fileEntries.Length)
+                    {
+                        string fileToPlay = fileEntries[numOfChosenCategory - 1];
+                        return fileToPlay;
+                    }
+                }
+                Console.WriteLine("Incorrect input.\n Please try again!");
             }
         }
 
@@ -211,17 +215,21 @@ namespace QuizMaker
         /// displays input inqury for user 
         /// </summary>
         /// <returns>int substracted by 1 to relate to index position</returns>
-        public static int GetAnswerPosition()
+        public static int GetAnswerPosition(int answerCount)
         {
-            Console.WriteLine("Enter the number infront of the answer you think is right");
-            if (int.TryParse(Console.ReadLine(), out int givenAnswer))
+            int givenAnswer;
+
+            while (true)
             {
-                return givenAnswer - 1;
-            }
-            else
-            {
+                Console.WriteLine("Enter the number infront of the answer you think is right");
+                if (int.TryParse(Console.ReadLine(), out givenAnswer))
+                {
+                    if (givenAnswer >= 1 && givenAnswer <= answerCount)
+                    {
+                        return givenAnswer - 1;
+                    }
+                }
                 Console.WriteLine("Incorrect input!");
-                return GetAnswerPosition();
             }
         }
 
@@ -337,28 +345,30 @@ namespace QuizMaker
 
         public static ModifySection GetOptionSelection()
         {
-            Console.WriteLine("What would you like to modify:");
-            Console.WriteLine("1. Category name");
-            Console.WriteLine("2. Category questions");
-            Console.WriteLine("3. Question answers");
-            Console.WriteLine("4. Exit");
-
-            if (int.TryParse(Console.ReadLine(), out int optionMenu))
+            while (true)
             {
-                switch (optionMenu)
+                Console.WriteLine("What would you like to modify:");
+                Console.WriteLine("1. Category name");
+                Console.WriteLine("2. Category questions");
+                Console.WriteLine("3. Question answers");
+                Console.WriteLine("4. Exit");
+
+                if (int.TryParse(Console.ReadLine(), out int optionMenu))
                 {
-                    case 1:
-                        return ModifySection.Name;
-                    case 2:
-                        return ModifySection.Questions;
-                    case 3:
-                        return ModifySection.Answers;
-                    case 4:
-                        return ModifySection.Exit;
+                    switch (optionMenu)
+                    {
+                        case 1:
+                            return ModifySection.Name;
+                        case 2:
+                            return ModifySection.Questions;
+                        case 3:
+                            return ModifySection.Answers;
+                        case 4:
+                            return ModifySection.Exit;
+                    }
                 }
+                ShowWrongInputMessage();
             }
-            ShowWrongInputMessage();
-            return GetOptionSelection();
         }
 
         public static string GetCategoryModifiedName(QuizCategory quizChapter)

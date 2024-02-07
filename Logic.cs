@@ -44,9 +44,9 @@
                     UI.ShowAnswerOption(question, ans);
                 }
 
-                int givenAnswer = UI.GetAnswerPosition();
+                int givenAnswer = UI.GetAnswerPosition(question.Answers.Count);
 
-                if (givenAnswer == question.CorrectAnswerIndex)
+                if (givenAnswer.Equals(question.CorrectAnswerIndex))
                 {
                     correctAnswer++;
                     UI.ShowAffirmingMessage();
