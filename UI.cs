@@ -337,12 +337,18 @@ namespace QuizMaker
             }
 
         }
-
+        /// <summary>
+        /// displays guiding message to user
+        /// </summary>
         public static void ShowSectionInquiry()
         {
             Console.WriteLine("Lets start with category you would like to modify");
         }
-
+        /// <summary>
+        ///1. displays multiple choices
+        ///2. prompts for input
+        /// </summary>
+        /// <returns>enum of chosen option</returns>
         public static ModifySection GetOptionSelection()
         {
             while (true)
@@ -370,14 +376,24 @@ namespace QuizMaker
                 ShowWrongInputMessage();
             }
         }
-
+        /// <summary>
+        /// 1. displays a question
+        /// 2. prompts for input
+        /// </summary>
+        /// <param name="quizChapter">object containing its name</param>
+        /// <returns>string</returns>
         public static string GetCategoryModifiedName(QuizCategory quizChapter)
         {
             Console.WriteLine($"Whats the new name for {quizChapter.Name} category?");
             string questionNaire = Console.ReadLine();
             return questionNaire;
         }
-
+        /// <summary>
+        /// checking if input string is consistent with existing one
+        /// </summary>
+        /// <param name="newName">string containing new name</param>
+        /// <param name="quizChapter">object containing current name</param>
+        /// <returns></returns>
         public static bool IsNameModified(string newName, QuizCategory quizChapter)
         {
             bool modified = false;
@@ -390,8 +406,12 @@ namespace QuizMaker
 
             return modified;
         }
-
-        public static int GetQuestionIndex(List<Question> chapterQuestions)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="chapterQuestions"></param>
+        /// <returns></returns>
+        public static void ShowQuestionList(List<Question> chapterQuestions)
         {
             Console.WriteLine("Questions:");
 
@@ -399,8 +419,15 @@ namespace QuizMaker
             {
                 Console.WriteLine($"{qn + 1}. {chapterQuestions[qn]}");
             }
+        }
 
+        public static void ShowQuestionInquiry()
+        {
             Console.WriteLine("Which question would you like to change?");
+        }
+
+        public static int GetQuestionIndexPosition(List<Question> chapterQuestions)
+        {
 
             bool positionNotRetrived = true;
 
@@ -430,7 +457,12 @@ namespace QuizMaker
 
             return questionPosition;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="questionPosition"></param>
+        /// <param name="chapterQuestions"></param>
+        /// <returns></returns>
         public static bool IsQuestionModified(int questionPosition, List<Question> chapterQuestions)
         {
             bool modified = false;
@@ -445,46 +477,9 @@ namespace QuizMaker
 
             return modified;
         }
-
-
-        public static int GetQuestionPositionIndex(List<Question> chapterQuestions)
+        public static void ShowAnswerInquiry()
         {
-            Console.WriteLine("Questions:");
-
-            for (int qn = 0; qn < chapterQuestions.Count; qn++)
-            {
-                Console.WriteLine($"{qn + 1}. {chapterQuestions[qn]}");
-            }
-
             Console.WriteLine("Answers to which question would you like to change?");
-
-            bool positionNotRetrived = true;
-
-            int questionPosition = 0;
-
-            while (positionNotRetrived)
-            {
-                if (int.TryParse(Console.ReadLine(), out questionPosition))
-                {
-                    questionPosition -= 1;
-                    if (questionPosition >= 0 && questionPosition < chapterQuestions.Count)
-                    {
-                        positionNotRetrived = false;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Invalid question number.");
-                        Console.WriteLine("Please enter the number standing before desired question.");
-                        continue;
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Invalid input. Please enter a number.");
-                }
-            }
-
-            return questionPosition;
         }
 
         public static List<string> GetAnswerList(List<Question> chapterQuestions, int questionPosition)
@@ -552,133 +547,5 @@ namespace QuizMaker
 
             return modified;
         }
-        //public static List<string> GetCurrentAnswerList(List<Question> chapterQuestions)
-        //{
-        //    for (int qn = 0; qn < chapterQuestions.Count; qn++)
-        //    {
-        //        Console.WriteLine($"{qn + 1}. {chapterQuestions[qn]}");
-        //    }
-        //    Console.WriteLine("Answers to which question would you like to change?");
-
-        //    if (int.TryParse(Console.ReadLine(), out int questionPosition))
-        //    {
-        //        List<string> answers = new List<string>();
-        //        questionPosition -= 1;
-        //        answers = chapterQuestions[questionPosition].Answers;
-
-        //        for (int ans = 0; ans < answers.Count; ans++)
-        //        {
-        //            Console.WriteLine($"{ans + 1}. {answers[ans]}");
-        //        }
-
-        //        int correctAnswerIndex = chapterQuestions[questionPosition].CorrectAnswerIndex;
-        //        Console.WriteLine($"{answers[correctAnswerIndex]} is a current correct answer!");
-
-        //        return answers;
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine();
-        //        return GetCurrentAnswerList(chapterQuestions);
-        //    }
-        //}
-        //public static bool IsAnswerModified(List<string> answers)
-        //{
-        //    bool modified = false;
-        //    Console.WriteLine("Which answer would you like to change?");
-        //    if (int.TryParse(Console.ReadLine(), out int answerPosition))
-        //    {
-        //        Console.WriteLine("Write the new answer...");
-        //        string response = Console.ReadLine();
-        //        answerPosition -= 1;
-
-        //        if (response != answers[answerPosition])
-        //        {
-        //            modified = true;
-        //            answers[answerPosition] = response;
-        //        }
-
-        //        return modified;
-
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("Invalid input. Please enter a number.");
-        //        return IsAnswerModified(answers);
-        //    }
     }
-
-    //public static bool IsAnswerModified(List<Question> chapterQuestions)
-    //{
-    //    for (int qn = 0; qn < chapterQuestions.Count; qn++)
-    //    {
-    //        Console.WriteLine($"{qn + 1}. {chapterQuestions[qn]}");
-    //    }
-    //    Console.WriteLine("Answers to which question would you like to change?");
-
-    //    List<string> answers = new List<string>();
-
-    //    while (int.TryParse(Console.ReadLine(), out int questionPosition))
-    //    {
-    //        if (questionPosition >= 0 && questionPosition < chapterQuestions.Count)
-    //        {
-    //            questionPosition -= 1;
-    //            answers = chapterQuestions[questionPosition].Answers;
-
-    //            for (int ans = 0; ans < answers.Count; ans++)
-    //            {
-    //                Console.WriteLine($"{ans + 1}. {answers[ans]}");
-    //            }
-
-    //        }
-    //        else
-    //        {
-    //            Console.WriteLine("Invalid question number.");
-    //            Console.WriteLine("Please enter the number standing before desired question.");
-    //            continue;
-    //        }
-
-    //        int correctAnswerIndex = chapterQuestions[questionPosition].CorrectAnswerIndex;
-    //        Console.WriteLine($"{answers[correctAnswerIndex]} is a current correct answer!");
-
-
-    //        bool modified = false;
-    //        Console.WriteLine("Which answer would you like to change?");
-    //        while (!modified)
-    //        {
-    //            while (int.TryParse(Console.ReadLine(), out int answerPosition))
-    //            {
-    //                if (answerPosition >= 0 && answerPosition < answers.Count)
-    //                {
-    //                    Console.WriteLine("Write the new answer...");
-    //                    string response = Console.ReadLine();
-    //                    answerPosition -= 1;
-
-    //                    if (response != answers[answerPosition])
-    //                    {
-    //                        modified = true;
-    //                        answers[answerPosition] = response;
-    //                    }
-
-    //                    return modified;
-    //                }
-    //                else
-    //                {
-    //                    Console.WriteLine("Invalid question number.");
-    //                    Console.WriteLine("Please enter the number standing before desired question.");
-    //                }
-    //            }
-
-    //            Console.WriteLine("Invalid input. Please enter a number.");
-    //        }
-    //    }
-
-    //    Console.WriteLine("Invalid input. Please enter a number.");
-    //    return IsAnswerModified(chapterQuestions);
-
-    //}
-
-    ////public static bool IsAnswerModified(List<string> answers)
-    ////{
-    ////}
 }

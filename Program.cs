@@ -118,8 +118,6 @@ namespace QuizMaker
 
                         Question inquiry = new Question();
 
-                        //inquiry.Answers = 
-
                         bool endModification = true;
 
                         do
@@ -138,14 +136,18 @@ namespace QuizMaker
                                     break;
 
                                 case ModifySection.Questions:
-                                    
-                                    int questionPosition = UI.GetQuestionIndex(chapterQuestions);
+
+                                    UI.ShowQuestionList(chapterQuestions);
+                                    UI.ShowQuestionInquiry();
+                                    int questionPosition = UI.GetQuestionIndexPosition(chapterQuestions);
                                     QorAModified = UI.IsQuestionModified(questionPosition, chapterQuestions);
                                     break;
 
                                 case ModifySection.Answers:
 
-                                    int questionIndex = UI.GetQuestionIndex(chapterQuestions);
+                                    UI.ShowQuestionList(chapterQuestions);
+                                    UI.ShowAnswerInquiry();
+                                    int questionIndex = UI.GetQuestionIndexPosition(chapterQuestions);
                                     inquiry.Answers = UI.GetAnswerList(chapterQuestions, questionIndex);
                                     int answerPosition = UI.GetAnswerIndex(inquiry.Answers);
                                     QorAModified = UI.IsAnswerModified(answerPosition, inquiry.Answers);
@@ -175,7 +177,7 @@ namespace QuizMaker
                         case QuizState.Exit:
 
                         runningProgram = false;
-                        // Goodbye note!
+                        Console.WriteLine("Thank you for playing our Quiz Maker!\nGoodbye!");
                         break;
                 }
             }
