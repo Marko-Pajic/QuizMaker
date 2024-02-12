@@ -393,7 +393,7 @@ namespace QuizMaker
         /// </summary>
         /// <param name="newName">string containing new name</param>
         /// <param name="quizChapter">object containing current name</param>
-        /// <returns></returns>
+        /// <returns>boolean</returns>
         public static bool IsNameModified(string newName, QuizCategory quizChapter)
         {
             bool modified = false;
@@ -407,10 +407,10 @@ namespace QuizMaker
             return modified;
         }
         /// <summary>
-        /// 
+        /// displays list of questions
         /// </summary>
-        /// <param name="chapterQuestions"></param>
-        /// <returns></returns>
+        /// <param name="chapterQuestions">list containing question objects</param>
+        /// <returns>string</returns>
         public static void ShowQuestionList(List<Question> chapterQuestions)
         {
             Console.WriteLine("Questions:");
@@ -420,12 +420,18 @@ namespace QuizMaker
                 Console.WriteLine($"{qn + 1}. {chapterQuestions[qn]}");
             }
         }
-
+        /// <summary>
+        /// displays a message
+        /// </summary>
         public static void ShowQuestionInquiry()
         {
             Console.WriteLine("Which question would you like to change?");
         }
-
+        /// <summary>
+        /// loops for input of question choice
+        /// </summary>
+        /// <param name="chapterQuestions">list of questions</param>
+        /// <returns>int question position</returns>
         public static int GetQuestionIndexPosition(List<Question> chapterQuestions)
         {
 
@@ -458,11 +464,11 @@ namespace QuizMaker
             return questionPosition;
         }
         /// <summary>
-        /// 
+        /// prompts for input and validates input against the existing data
         /// </summary>
-        /// <param name="questionPosition"></param>
-        /// <param name="chapterQuestions"></param>
-        /// <returns></returns>
+        /// <param name="questionPosition">int question postion</param>
+        /// <param name="chapterQuestions">list of questions</param>
+        /// <returns>boolean</returns>
         public static bool IsQuestionModified(int questionPosition, List<Question> chapterQuestions)
         {
             bool modified = false;
@@ -477,11 +483,19 @@ namespace QuizMaker
 
             return modified;
         }
+        /// <summary>
+        /// displays a question
+        /// </summary>
         public static void ShowAnswerInquiry()
         {
             Console.WriteLine("Answers to which question would you like to change?");
         }
-
+        /// <summary>
+        /// creates,populates and displays list of answers
+        /// </summary>
+        /// <param name="chapterQuestions">list of Question objects</param>
+        /// <param name="questionPosition">int position of Question object</param>
+        /// <returns>list of answers from chosen Question object</returns>
         public static List<string> GetAnswerList(List<Question> chapterQuestions, int questionPosition)
         {
             List<string> answers = new List<string>();
@@ -498,7 +512,11 @@ namespace QuizMaker
 
             return answers;
         }
-
+        /// <summary>
+        /// loops for input of answer choice
+        /// </summary>
+        /// <param name="answers">list of answers</param>
+        /// <returns>int answer position</returns>
         public static int GetAnswerIndex(List<string> answers)
         {
 
@@ -532,7 +550,12 @@ namespace QuizMaker
 
             return answerPosition;
         }
-
+        /// <summary>
+        /// prompts for input and validates input against the existing data
+        /// </summary>
+        /// <param name="answerPosition">int answer position</param>
+        /// <param name="answers">list of answers</param>
+        /// <returns>boolean</returns>
         public static bool IsAnswerModified(int answerPosition, List<string> answers)
         {
             bool modified = false;
