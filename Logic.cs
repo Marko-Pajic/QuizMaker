@@ -60,5 +60,16 @@
 
             return correctAnswer;
         }
+
+        public static QuizCategory GetFileToModify(QuizCategory quizSection)
+        {
+            string[] fileEntires = FileUtils.GetCategorySelection();
+
+            string fileToPlay = UI.GetSelectedFileName(fileEntires);
+
+            quizSection = FileUtils.DeserializeFileToCategory(fileToPlay);
+
+            return quizSection;
+        }
     }
 }

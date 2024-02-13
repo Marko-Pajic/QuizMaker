@@ -79,11 +79,7 @@ namespace QuizMaker
 
                         UI.ShowCategoryInquiry();
 
-                        string[] fileEntires = FileUtils.GetCategorySelection();
-
-                        string fileToPlay = UI.GetSelectedFileName(fileEntires);
-
-                        quizSection = FileUtils.DeserializeFileToCategory(fileToPlay);
+                        quizSection = Logic.GetFileToModify(quizSection);
 
                         sectionQuestions = quizSection.Questions;
 
