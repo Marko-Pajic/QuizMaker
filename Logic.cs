@@ -1,4 +1,6 @@
-﻿namespace QuizMaker
+﻿using QuizMaker.Enumerations;
+
+namespace QuizMaker
 {
     public class Logic
 
@@ -61,7 +63,7 @@
             return correctAnswer;
         }
 
-        public static QuizCategory GetFileToModify(QuizCategory quizSection)
+        public static QuizCategory GetSectionToModify(QuizCategory quizSection)
         {
             string[] fileEntires = FileUtils.GetCategorySelection();
 
@@ -70,6 +72,81 @@
             quizSection = FileUtils.DeserializeFileToCategory(fileToPlay);
 
             return quizSection;
+        }
+
+        public static QuizCategory GetSectionModify()
+        {
+            QuizCategory quizChapter = new QuizCategory();
+
+            UI.ShowSectionInquiry();
+
+            string[] categoryNames = FileUtils.GetCategorySelection();
+
+            string fileToModify = UI.GetSelectedFileName(categoryNames);
+
+            quizChapter = FileUtils.DeserializeFileToCategory(fileToModify);
+
+            //quizChapter = Logic.GetSectionToModify(quizChapter);
+
+            List<Question> chapterQuestions = new List<Question>();/* Consider to remove*/
+
+            chapterQuestions = quizChapter.Questions;/* Consider to remove*/
+
+            Question inquiry = new Question();
+
+            bool endModification = true;
+
+            do
+            {
+                bool nameModified = false;
+                bool QorAModified = false;
+
+                ModifySection option = UI.GetOptionSelection();
+
+                switch (option)
+                {
+                    case ModifySection.Name:
+
+                        string newName = UI.GetCategoryModifiedName(quizChapter);
+                        nameModified = UI.IsNameModified(newName, quizChapter);
+                        break;
+
+                    case ModifySection.Questions:
+
+                        UI.ShowQuestionList(chapterQuestions);
+                        UI.ShowQuestionInquiry();
+                        int questionPosition = UI.GetQuestionIndexPosition(chapterQuestions);
+                        QorAModified = UI.IsQuestionModified(questionPosition, chapterQuestions);
+                        break;
+
+                    case ModifySection.Answers:
+
+                        UI.ShowQuestionList(chapterQuestions);
+                        UI.ShowAnswerInquiry();
+                        int questionIndex = UI.GetQuestionIndexPosition(chapterQuestions);
+                        inquiry.Answers = UI.GetAnswerList(chapterQuestions, questionIndex);
+                        int answerPosition = UI.GetAnswerIndex(inquiry.Answers);
+                        QorAModified = UI.IsAnswerModified(answerPosition, inquiry.Answers);
+                        break;
+
+                    case ModifySection.Exit:
+
+                        endModification = false;
+                        break;
+                }
+
+                if (nameModified)
+                {
+                    FileUtils.UpdateAndSerializeNewCategoryName(quizChapter, fileToModify);
+                }
+                if (QorAModified)
+                {
+                    FileUtils.SerializeModifiedCategoryToFile(quizChapter, fileToModify);
+                }
+                /* Data saved*/
+            } while (endModification);
+
+            return quizChapter;
         }
     }
 }

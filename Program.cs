@@ -79,7 +79,7 @@ namespace QuizMaker
 
                         UI.ShowCategoryInquiry();
 
-                        quizSection = Logic.GetFileToModify(quizSection);
+                        quizSection = Logic.GetSectionToModify(quizSection);
 
                         sectionQuestions = quizSection.Questions;
 
@@ -94,79 +94,81 @@ namespace QuizMaker
 
                     case QuizState.Modify:
 
-                        List<QuizCategory> quizCategories = new List<QuizCategory>();
+                        //List<QuizCategory> quizCategories = new List<QuizCategory>();
 
-                        var x = quizCategories.Where(q => q.Name == "Food");
+                        //var x = quizCategories.Where(q => q.Name == "Food");
 
-                        QuizCategory quizChapter = new QuizCategory();
+                        //QuizCategory quizChapter = new QuizCategory();
 
-                        UI.ShowSectionInquiry();
+                       // UI.ShowSectionInquiry();
 
-                        string[] categoryNames = FileUtils.GetCategorySelection();
+                       // string[] categoryNames = FileUtils.GetCategorySelection();
 
-                        string fileToModify = UI.GetSelectedFileName(categoryNames);
+                       // string fileToModify = UI.GetSelectedFileName(categoryNames);
 
-                        quizChapter = FileUtils.DeserializeFileToCategory(fileToModify);
+                       // quizChapter = FileUtils.DeserializeFileToCategory(fileToModify);
 
-                        List<Question> chapterQuestions = new List<Question>();/* Consider to remove*/
+                       // //quizChapter = Logic.GetSectionToModify(quizChapter);
 
-                        chapterQuestions = quizChapter.Questions;/* Consider to remove*/
+                       // List<Question> chapterQuestions = new List<Question>();/* Consider to remove*/
 
-                        Question inquiry = new Question();
+                       // chapterQuestions = quizChapter.Questions;/* Consider to remove*/
 
-                        bool endModification = true;
+                       // Question inquiry = new Question();
 
-                        do
-                        {
-                            bool nameModified = false;
-                            bool QorAModified = false;
+                       // bool endModification = true;
 
-                            ModifySection option = UI.GetOptionSelection();
+                       // do
+                       // {
+                       //     bool nameModified = false;
+                       //     bool QorAModified = false;
 
-                            switch (option)
-                            {
-                                case ModifySection.Name:
+                       //     ModifySection option = UI.GetOptionSelection();
 
-                                    string newName = UI.GetCategoryModifiedName(quizChapter);
-                                    nameModified = UI.IsNameModified(newName, quizChapter);
-                                    break;
+                       //     switch (option)
+                       //     {
+                       //         case ModifySection.Name:
 
-                                case ModifySection.Questions:
+                       //             string newName = UI.GetCategoryModifiedName(quizChapter);
+                       //             nameModified = UI.IsNameModified(newName, quizChapter);
+                       //             break;
 
-                                    UI.ShowQuestionList(chapterQuestions);
-                                    UI.ShowQuestionInquiry();
-                                    int questionPosition = UI.GetQuestionIndexPosition(chapterQuestions);
-                                    QorAModified = UI.IsQuestionModified(questionPosition, chapterQuestions);
-                                    break;
+                       //         case ModifySection.Questions:
 
-                                case ModifySection.Answers:
+                       //             UI.ShowQuestionList(chapterQuestions);
+                       //             UI.ShowQuestionInquiry();
+                       //             int questionPosition = UI.GetQuestionIndexPosition(chapterQuestions);
+                       //             QorAModified = UI.IsQuestionModified(questionPosition, chapterQuestions);
+                       //             break;
 
-                                    UI.ShowQuestionList(chapterQuestions);
-                                    UI.ShowAnswerInquiry();
-                                    int questionIndex = UI.GetQuestionIndexPosition(chapterQuestions);
-                                    inquiry.Answers = UI.GetAnswerList(chapterQuestions, questionIndex);
-                                    int answerPosition = UI.GetAnswerIndex(inquiry.Answers);
-                                    QorAModified = UI.IsAnswerModified(answerPosition, inquiry.Answers);
-                                    break;
+                       //         case ModifySection.Answers:
 
-                                case ModifySection.Exit:
+                       //             UI.ShowQuestionList(chapterQuestions);
+                       //             UI.ShowAnswerInquiry();
+                       //             int questionIndex = UI.GetQuestionIndexPosition(chapterQuestions);
+                       //             inquiry.Answers = UI.GetAnswerList(chapterQuestions, questionIndex);
+                       //             int answerPosition = UI.GetAnswerIndex(inquiry.Answers);
+                       //             QorAModified = UI.IsAnswerModified(answerPosition, inquiry.Answers);
+                       //             break;
 
-                                    endModification = false;
-                                    break;
-                            }
+                       //         case ModifySection.Exit:
 
-                            if (nameModified)
-                            {
-                                FileUtils.UpdateAndSerializeNewCategoryName(quizChapter, fileToModify);
-                            }
-                            if (QorAModified)
-                            {
-                                FileUtils.SerializeModifiedCategoryToFile(quizChapter, fileToModify);
-                            }
-                            /* Data saved*/
-                        } while (endModification);
+                       //             endModification = false;
+                       //             break;
+                       //     }
 
-                       // quizChapter = ;
+                       //     if (nameModified)
+                       //     {
+                       //         FileUtils.UpdateAndSerializeNewCategoryName(quizChapter, fileToModify);
+                       //     }
+                       //     if (QorAModified)
+                       //     {
+                       //         FileUtils.SerializeModifiedCategoryToFile(quizChapter, fileToModify);
+                       //     }
+                       //     /* Data saved*/
+                       // } while (endModification);
+
+                       QuizCategory quizChapter = Logic.GetSectionModify();
 
                         break;
 
