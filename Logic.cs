@@ -74,79 +74,15 @@ namespace QuizMaker
             return quizSection;
         }
 
-        public static QuizCategory GetSectionModify()
+        public static Question GetAnswerArranged (Question question, List<string> answers, string correctAnswer)
         {
-            QuizCategory quizChapter = new QuizCategory();
+            answers = Logic.GetIndexShuffle(answers);
 
-            UI.ShowSectionInquiry();
+            question.Answers = answers;
 
-            string[] categoryNames = FileUtils.GetCategorySelection();
+            question.CorrectAnswerIndex = answers.IndexOf(correctAnswer);
 
-            string fileToModify = UI.GetSelectedFileName(categoryNames);
-
-            quizChapter = FileUtils.DeserializeFileToCategory(fileToModify);
-
-            //quizChapter = Logic.GetSectionToModify(quizChapter);
-
-            List<Question> chapterQuestions = new List<Question>();/* Consider to remove*/
-
-            chapterQuestions = quizChapter.Questions;/* Consider to remove*/
-
-            Question inquiry = new Question();
-
-            bool endModification = true;
-
-            do
-            {
-                bool nameModified = false;
-                bool QorAModified = false;
-
-                ModifySection option = UI.GetOptionSelection();
-
-                switch (option)
-                {
-                    case ModifySection.Name:
-
-                        string newName = UI.GetCategoryModifiedName(quizChapter);
-                        nameModified = UI.IsNameModified(newName, quizChapter);
-                        break;
-
-                    case ModifySection.Questions:
-
-                        UI.ShowQuestionList(chapterQuestions);
-                        UI.ShowQuestionInquiry();
-                        int questionPosition = UI.GetQuestionIndexPosition(chapterQuestions);
-                        QorAModified = UI.IsQuestionModified(questionPosition, chapterQuestions);
-                        break;
-
-                    case ModifySection.Answers:
-
-                        UI.ShowQuestionList(chapterQuestions);
-                        UI.ShowAnswerInquiry();
-                        int questionIndex = UI.GetQuestionIndexPosition(chapterQuestions);
-                        inquiry.Answers = UI.GetAnswerList(chapterQuestions, questionIndex);
-                        int answerPosition = UI.GetAnswerIndex(inquiry.Answers);
-                        QorAModified = UI.IsAnswerModified(answerPosition, inquiry.Answers);
-                        break;
-
-                    case ModifySection.Exit:
-
-                        endModification = false;
-                        break;
-                }
-
-                if (nameModified)
-                {
-                    FileUtils.UpdateAndSerializeNewCategoryName(quizChapter, fileToModify);
-                }
-                if (QorAModified)
-                {
-                    FileUtils.SerializeModifiedCategoryToFile(quizChapter, fileToModify);
-                }
-                /* Data saved*/
-            } while (endModification);
-
-            return quizChapter;
+            return question;
         }
     }
 }
