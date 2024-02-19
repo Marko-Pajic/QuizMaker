@@ -90,11 +90,11 @@ namespace QuizMaker
 
                     case QuizState.Modify:
 
-                        QuizCategory quizChapter = UI.GetSectionModify();
+                        QuizCategory quizChapter = UI.GetCategoryModification();
 
                         break;
 
-                        case QuizState.Exit:
+                    case QuizState.Exit:
 
                         runningProgram = false;
                         Console.WriteLine("Thank you for playing our Quiz Maker!\nGoodbye!");

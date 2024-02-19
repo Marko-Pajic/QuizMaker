@@ -571,7 +571,7 @@ namespace QuizMaker
             return modified;
         }
 
-        public static QuizCategory GetSectionModify()
+        public static QuizCategory GetCategoryModification()
         {
             QuizCategory quizChapter = new QuizCategory();
 
