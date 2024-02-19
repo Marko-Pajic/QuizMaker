@@ -575,19 +575,17 @@ namespace QuizMaker
         {
             QuizCategory quizChapter = new QuizCategory();
 
-            UI.ShowSectionInquiry();
+            ShowSectionInquiry();
 
             string[] categoryNames = FileUtils.GetCategorySelection();
 
-            string fileToModify = UI.GetSelectedFileName(categoryNames);
+            string fileToModify = GetSelectedFileName(categoryNames);
 
             quizChapter = FileUtils.DeserializeFileToCategory(fileToModify);
 
-            //quizChapter = Logic.GetSectionToModify(quizChapter);
+            List<Question> chapterQuestions = new List<Question>();
 
-            List<Question> chapterQuestions = new List<Question>();/* Consider to remove*/
-
-            chapterQuestions = quizChapter.Questions;/* Consider to remove*/
+            chapterQuestions = quizChapter.Questions;
 
             Question inquiry = new Question();
 
@@ -598,32 +596,32 @@ namespace QuizMaker
                 bool nameModified = false;
                 bool QorAModified = false;
 
-                ModifySection option = UI.GetOptionSelection();
+                ModifySection option = GetOptionSelection();
 
                 switch (option)
                 {
                     case ModifySection.Name:
 
-                        string newName = UI.GetCategoryModifiedName(quizChapter);
-                        nameModified = UI.IsNameModified(newName, quizChapter);
+                        string newName = GetCategoryModifiedName(quizChapter);
+                        nameModified = IsNameModified(newName, quizChapter);
                         break;
 
                     case ModifySection.Questions:
 
-                        UI.ShowQuestionList(chapterQuestions);
-                        UI.ShowQuestionInquiry();
-                        int questionPosition = UI.GetQuestionIndexPosition(chapterQuestions);
-                        QorAModified = UI.IsQuestionModified(questionPosition, chapterQuestions);
+                        ShowQuestionList(chapterQuestions);
+                        ShowQuestionInquiry();
+                        int questionPosition = GetQuestionIndexPosition(chapterQuestions);
+                        QorAModified = IsQuestionModified(questionPosition, chapterQuestions);
                         break;
 
                     case ModifySection.Answers:
 
-                        UI.ShowQuestionList(chapterQuestions);
-                        UI.ShowAnswerInquiry();
-                        int questionIndex = UI.GetQuestionIndexPosition(chapterQuestions);
-                        inquiry.Answers = UI.GetAnswerList(chapterQuestions, questionIndex);
-                        int answerPosition = UI.GetAnswerIndex(inquiry.Answers);
-                        QorAModified = UI.IsAnswerModified(answerPosition, inquiry.Answers);
+                        ShowQuestionList(chapterQuestions);
+                        ShowAnswerInquiry();
+                        int questionIndex = GetQuestionIndexPosition(chapterQuestions);
+                        inquiry.Answers = GetAnswerList(chapterQuestions, questionIndex);
+                        int answerPosition = GetAnswerIndex(inquiry.Answers);
+                        QorAModified = IsAnswerModified(answerPosition, inquiry.Answers);
                         break;
 
                     case ModifySection.Exit:
@@ -642,10 +640,16 @@ namespace QuizMaker
                 {
                     FileUtils.SerializeModifiedCategoryToFile(quizChapter, fileToModify);
                 }
-                /* Data saved*/
+                ShowStoringNotification();
+
             } while (endModification);
 
             return quizChapter;
+        }
+
+        public static void ShowStoringNotification()
+        {
+            Console.WriteLine("Changes saved!");
         }
     }
 }
