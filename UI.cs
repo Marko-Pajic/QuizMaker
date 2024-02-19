@@ -651,5 +651,10 @@ namespace QuizMaker
         {
             Console.WriteLine("Changes saved!");
         }
+
+        public static void ShowValedictionNotification()
+        {
+            Console.WriteLine("Thank you for playing our Quiz Maker!\nGoodbye!");
+        }
     }
 }

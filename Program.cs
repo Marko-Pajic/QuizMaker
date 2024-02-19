@@ -97,7 +97,7 @@ namespace QuizMaker
                     case QuizState.Exit:
 
                         runningProgram = false;
-                        Console.WriteLine("Thank you for playing our Quiz Maker!\nGoodbye!");
+                        UI.ShowValedictionNotification();
                         break;
                 }
             }
