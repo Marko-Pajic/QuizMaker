@@ -634,7 +634,9 @@ namespace QuizMaker
 
                 if (nameModified)
                 {
-                    FileUtils.UpdateAndSerializeNewCategoryName(quizChapter, fileToModify);
+                    string newFilePath = FileUtils.UpdateAndSerializeNewCategoryName(quizChapter, fileToModify);
+                    
+                    fileToModify = newFilePath;
                 }
                 if (QorAModified)
                 {

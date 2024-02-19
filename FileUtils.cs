@@ -79,7 +79,7 @@ namespace QuizMaker
             }
         }
 
-        public static void UpdateAndSerializeNewCategoryName(QuizCategory quizChapter, string oldFilePath)
+        public static string UpdateAndSerializeNewCategoryName(QuizCategory quizChapter, string oldFilePath)
         {
             string directoryPath = Constant.DIRECTORY_FOLDER;
             string newFileName = $"{quizChapter.Name}.xml";
@@ -92,6 +92,8 @@ namespace QuizMaker
             }
 
             File.Delete(oldFilePath);
+
+            return newFilePath;
         }
 
     }
