@@ -26,17 +26,6 @@ namespace QuizMaker
 
 
 
-        public static QuizCategory GetSectionToModify(QuizCategory quizSection)
-        {
-            string[] fileEntires = FileUtils.GetCategorySelection();
-
-            string fileToPlay = UI.GetSelectedFileName(fileEntires);
-
-            quizSection = FileUtils.DeserializeFileToCategory(fileToPlay);
-
-            return quizSection;
-        }
-
         public static Question GetAnswerArranged (Question question, List<string> answers, string correctAnswer)
         {
             answers = Logic.GetIndexShuffle(answers);

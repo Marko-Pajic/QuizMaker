@@ -40,7 +40,16 @@ namespace QuizMaker
                 serializer.Serialize(file, questionContainer);
             }
         }
+        public static QuizCategory GetSectionToModify(QuizCategory quizSection)
+        {
+            string[] fileEntires = GetCategorySelection();
 
+            string fileToPlay = UI.GetSelectedFileName(fileEntires);
+
+            quizSection = DeserializeFileToCategory(fileToPlay);
+
+            return quizSection;
+        }
         /// <summary>
         /// uses GetFiles method to populate the array
         /// </summary>

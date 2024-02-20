@@ -75,7 +75,7 @@ namespace QuizMaker
 
                         UI.ShowCategoryInquiry();
 
-                        quizSection = Logic.GetSectionToModify(quizSection);
+                        quizSection = FileUtils.GetSectionToModify(quizSection);
 
                         sectionQuestions = quizSection.Questions;
 
