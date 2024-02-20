@@ -295,6 +295,45 @@ namespace QuizMaker
         }
 
         /// <summary>
+        /// looping through list of questions and prompting for answers 
+        /// </summary>
+        /// <param name="questions"></param>
+        /// <returns>number of correct answers</returns>
+        public static int GetSumOfCorrectAnswer(List<Question> questions)
+        {
+            int correctAnswer = 0;
+
+            Question question = new Question();
+
+            for (int qn = 0; qn < questions.Count; qn++)
+            {
+                question = questions[qn];
+
+                UI.ShowCategoryQuestion(question);
+
+                for (int ans = 0; ans < question.Answers.Count; ans++)
+                {
+                    UI.ShowAnswerOption(question, ans);
+                }
+
+                int givenAnswer = UI.GetAnswerPosition(question.Answers.Count);
+
+                if (givenAnswer.Equals(question.CorrectAnswerIndex))
+                {
+                    correctAnswer++;
+                    UI.ShowAffirmingMessage();
+                }
+                else
+                {
+                    UI.ShowCorrectAnswer(question);
+                }
+            }
+            UI.ShowNotification();
+
+            return correctAnswer;
+        }
+
+        /// <summary>
         /// 1. calculates percentage of correct answers based on num of questions
         /// 2. checks which condition is met and displays appropriate message using enums
         /// </summary>

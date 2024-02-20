@@ -79,7 +79,7 @@ namespace QuizMaker
 
                         sectionQuestions = quizSection.Questions;
 
-                        int correctAnswerCount = Logic.GetSumOfCorrectAnswer(sectionQuestions);
+                        int correctAnswerCount = UI.GetSumOfCorrectAnswer(sectionQuestions);
 
                         int numberOfQuestions = sectionQuestions.Count;
 
