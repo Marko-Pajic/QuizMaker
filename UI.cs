@@ -126,11 +126,30 @@ namespace QuizMaker
             return correctAnswer;
         }
 
+        public static Question GetNewQuestion()
+        {
+            Question question = new Question();
+
+            question.Inquiry = UI.GetQuestionInput();
+
+            int numOfAnswers = UI.GetNumOfAnswers();
+
+            List<string> answers = UI.GetDecoyAnswers(numOfAnswers);
+
+            string correctAnswer = UI.GetCorrectAnswer();
+
+            answers.Add(correctAnswer);
+
+            Logic.GetAnswerArranged(question, answers, correctAnswer);
+
+            return question;
+        }
+
         /// <summary>
         /// displays question and input field
         /// </summary>
         /// <returns>boolean</returns>
-        public static bool GetNewQuestion()
+        public static bool IsNewQuestionUnderway()
         {
             Console.WriteLine("Wanna add more questions");
             Console.WriteLine("Answer with y or n");
@@ -608,6 +627,21 @@ namespace QuizMaker
             }
 
             return modified;
+        }
+
+        public static void ShowQuizChallenge()
+        {
+            UI.ShowCategoryInquiry();
+
+            QuizCategory quizSection = Logic.GetCategory();
+
+            List<Question> sectionQuestions = quizSection.Questions;
+
+            int correctAnswerCount = UI.GetSumOfCorrectAnswer(sectionQuestions);
+
+            int numberOfQuestions = sectionQuestions.Count;
+
+            UI.ShowGradingResult(correctAnswerCount, numberOfQuestions);
         }
 
         public static QuizCategory GetCategoryModification()

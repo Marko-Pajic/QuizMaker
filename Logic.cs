@@ -23,9 +23,13 @@ namespace QuizMaker
 
             return answers;
         }
-
-
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="question"></param>
+        /// <param name="answers"></param>
+        /// <param name="correctAnswer"></param>
+        /// <returns></returns>
         public static Question GetAnswerArranged (Question question, List<string> answers, string correctAnswer)
         {
             answers = Logic.GetIndexShuffle(answers);
@@ -35,6 +39,19 @@ namespace QuizMaker
             question.CorrectAnswerIndex = answers.IndexOf(correctAnswer);
 
             return question;
+        }
+
+        public static void AddQuestionAndSerialize (List<Question> questions, QuizCategory quizCategory)
+        {
+            quizCategory.Questions = questions;
+            FileUtils.SerializeCategoryToFile(quizCategory);
+        }
+
+        public static QuizCategory GetCategory()
+        {
+            QuizCategory quizSection = new QuizCategory();
+            quizSection = FileUtils.GetSectionToModify(quizSection);
+            return quizSection;
         }
     }
 }

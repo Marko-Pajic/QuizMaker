@@ -22,7 +22,7 @@ namespace QuizMaker
 
                     case QuizState.Build:
 
-                        bool createNewCategory = false;
+                        bool createNewCategory;
 
                         do
                         {
@@ -32,35 +32,21 @@ namespace QuizMaker
 
                             List<Question> questions = new List<Question>();
 
-                            bool createNewQuestions = false;
+                            bool createNewQuestions;
 
                             do
                             {
-                                Question question = new Question();
-
-                                question.Inquiry = UI.GetQuestionInput();
-
-                                int numOfAnswers = UI.GetNumOfAnswers();
-
-                                List<string> answers = UI.GetDecoyAnswers(numOfAnswers);
-
-                                string correctAnswer = UI.GetCorrectAnswer();
-
-                                answers.Add(correctAnswer);
-
-                                Logic.GetAnswerArranged(question, answers, correctAnswer);
-
+                                Question question = UI.GetNewQuestion();
+                               
                                 questions.Add(question);
 
-                                createNewQuestions = UI.GetNewQuestion();
+                                createNewQuestions = UI.IsNewQuestionUnderway();
 
                             } while (createNewQuestions);
 
-                            quizCategory.Questions = questions;
+                            Logic.AddQuestionAndSerialize(questions, quizCategory);
 
                             createNewCategory = UI.GetNewCategory();
-
-                            FileUtils.SerializeCategoryToFile(quizCategory);
 
                         } while (createNewCategory);
 
@@ -69,29 +55,13 @@ namespace QuizMaker
 
                     case QuizState.Play:
 
-                        QuizCategory quizSection = new QuizCategory();
-
-                        List<Question> sectionQuestions = new List<Question>();
-
-                        UI.ShowCategoryInquiry();
-
-                        quizSection = FileUtils.GetSectionToModify(quizSection);
-
-                        sectionQuestions = quizSection.Questions;
-
-                        int correctAnswerCount = UI.GetSumOfCorrectAnswer(sectionQuestions);
-
-                        int numberOfQuestions = sectionQuestions.Count;
-
-                        UI.ShowGradingResult(correctAnswerCount, numberOfQuestions);
-
+                        UI.ShowQuizChallenge();
                         break;
 
 
                     case QuizState.Modify:
 
                         QuizCategory quizChapter = UI.GetCategoryModification();
-
                         break;
 
                     case QuizState.Exit:
