@@ -40,6 +40,13 @@ namespace QuizMaker
                 serializer.Serialize(file, questionContainer);
             }
         }
+        /// <summary>
+        /// 1. creates list of objects
+        /// 2. choose a object out of list
+        /// 3. extracts the chosen objects
+        /// </summary>
+        /// <param name="quizSection">new object</param>
+        /// <returns>new object</returns>
         public static QuizCategory GetSectionToModify(QuizCategory quizSection)
         {
             string[] fileEntires = GetCategorySelection();
@@ -78,7 +85,11 @@ namespace QuizMaker
             }
             return quizChapter;
         }
-
+        /// <summary>
+        /// serializing object to file
+        /// </summary>
+        /// <param name="quizChapter">object</param>
+        /// <param name="filePath">filepath</param>
         public static void SerializeModifiedCategoryToFile(QuizCategory quizChapter, string filePath)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(QuizCategory));
@@ -87,7 +98,13 @@ namespace QuizMaker
                 serializer.Serialize(file, quizChapter);
             }
         }
-
+        /// <summary>
+        /// 1.creates a new filepath for the manipulated object
+        /// 2. old file path gets deleted
+        /// </summary>
+        /// <param name="quizChapter">object</param>
+        /// <param name="oldFilePath">oldfilepath</param>
+        /// <returns></returns>
         public static string UpdateAndSerializeNewCategoryName(QuizCategory quizChapter, string oldFilePath)
         {
             string directoryPath = Constant.DIRECTORY_FOLDER;
