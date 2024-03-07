@@ -46,7 +46,7 @@ namespace QuizMaker
 
                             Logic.AddQuestionAndSerialize(questions, quizCategory);
 
-                            createNewCategory = UI.GetNewCategory();
+                            createNewCategory = UI.IsNewCategoryUnderway();
 
                         } while (createNewCategory);
 
@@ -55,7 +55,9 @@ namespace QuizMaker
 
                     case QuizState.Play:
 
-                        UI.ShowQuizChallenge();
+                        QuizCategory quizSection = Logic.GetCategory();
+                        List<Question> sectionQuestions = quizSection.Questions;
+                        UI.ShowQuizChallengeResult(sectionQuestions);
                         break;
 
 

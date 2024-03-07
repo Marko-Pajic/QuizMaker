@@ -125,7 +125,10 @@ namespace QuizMaker
             string correctAnswer = Console.ReadLine();
             return correctAnswer;
         }
-
+        /// <summary>
+        /// creates a question object and properties
+        /// </summary>
+        /// <returns>question object</returns>
         public static Question GetNewQuestion()
         {
             Question question = new Question();
@@ -163,7 +166,7 @@ namespace QuizMaker
         /// displays question and input field
         /// </summary>
         /// <returns>boolean</returns>
-        public static bool GetNewCategory()
+        public static bool IsNewCategoryUnderway()
         {
             Console.WriteLine("Wanna create new category?");
             Console.WriteLine("Answer with y or n");
@@ -628,14 +631,13 @@ namespace QuizMaker
 
             return modified;
         }
-
-        public static void ShowQuizChallenge()
+        /// <summary>
+        /// displays playable parof quiz and result
+        /// </summary>
+        /// <param name="sectionQuestions">list of question objects</param>
+        public static void ShowQuizChallengeResult(List<Question> sectionQuestions)
         {
             UI.ShowCategoryInquiry();
-
-            QuizCategory quizSection = Logic.GetCategory();
-
-            List<Question> sectionQuestions = quizSection.Questions;
 
             int correctAnswerCount = UI.GetSumOfCorrectAnswer(sectionQuestions);
 
