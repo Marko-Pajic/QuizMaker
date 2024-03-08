@@ -27,9 +27,7 @@ namespace QuizMaker
                         do
                         {
                             QuizCategory quizCategory = new QuizCategory();
-
                             quizCategory.Name = UI.GetCategoryName();
-
                             List<Question> questions = new List<Question>();
 
                             bool createNewQuestions;
@@ -37,15 +35,12 @@ namespace QuizMaker
                             do
                             {
                                 Question question = UI.GetNewQuestion();
-                               
                                 questions.Add(question);
-
                                 createNewQuestions = UI.IsNewQuestionUnderway();
 
                             } while (createNewQuestions);
 
                             Logic.AddQuestionAndSerialize(questions, quizCategory);
-
                             createNewCategory = UI.IsNewCategoryUnderway();
 
                         } while (createNewCategory);

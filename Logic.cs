@@ -35,9 +35,7 @@ namespace QuizMaker
         public static Question GetAnswerArranged (Question question, List<string> answers, string correctAnswer)
         {
             answers = Logic.GetIndexShuffle(answers);
-
             question.Answers = answers;
-
             question.CorrectAnswerIndex = answers.IndexOf(correctAnswer);
 
             return question;
@@ -62,6 +60,7 @@ namespace QuizMaker
         {
             QuizCategory quizSection = new QuizCategory();
             quizSection = FileUtils.GetSectionToModify(quizSection);
+
             return quizSection;
         }
     }

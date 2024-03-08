@@ -50,9 +50,7 @@ namespace QuizMaker
         public static QuizCategory GetSectionToModify(QuizCategory quizSection)
         {
             string[] fileEntires = GetCategorySelection();
-
             string fileToPlay = UI.GetSelectedFileName(fileEntires);
-
             quizSection = DeserializeFileToCategory(fileToPlay);
 
             return quizSection;
@@ -76,7 +74,6 @@ namespace QuizMaker
         public static QuizCategory DeserializeFileToCategory(string fileToPlay)
         {
             QuizCategory quizChapter = new QuizCategory();
-
             XmlSerializer serializer = new XmlSerializer(typeof(QuizCategory));
 
             using (FileStream file = File.OpenRead(fileToPlay))
@@ -93,6 +90,7 @@ namespace QuizMaker
         public static void SerializeModifiedCategoryToFile(QuizCategory quizChapter, string filePath)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(QuizCategory));
+
             using (FileStream file = File.Create(filePath))
             {
                 serializer.Serialize(file, quizChapter);
@@ -112,6 +110,7 @@ namespace QuizMaker
             string newFilePath = Path.Combine(directoryPath, newFileName);
 
             XmlSerializer serializer = new XmlSerializer(typeof(QuizCategory));
+
             using (FileStream file = File.Create(newFilePath))
             {
                 serializer.Serialize(file, quizChapter);

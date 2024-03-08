@@ -132,17 +132,13 @@ namespace QuizMaker
         public static Question GetNewQuestion()
         {
             Question question = new Question();
-
             question.Inquiry = UI.GetQuestionInput();
 
             int numOfAnswers = UI.GetNumOfAnswers();
-
             List<string> answers = UI.GetDecoyAnswers(numOfAnswers);
 
             string correctAnswer = UI.GetCorrectAnswer();
-
             answers.Add(correctAnswer);
-
             Logic.GetAnswerArranged(question, answers, correctAnswer);
 
             return question;
@@ -159,7 +155,6 @@ namespace QuizMaker
             char createNewQuestions = Console.ReadKey().KeyChar;
 
             return Constant.POSITIVE_ANSWER.Equals(createNewQuestions);
-
         }
 
         /// <summary>
@@ -324,13 +319,11 @@ namespace QuizMaker
         public static int GetSumOfCorrectAnswer(List<Question> questions)
         {
             int correctAnswer = 0;
-
             Question question = new Question();
 
             for (int qn = 0; qn < questions.Count; qn++)
             {
                 question = questions[qn];
-
                 UI.ShowCategoryQuestion(question);
 
                 for (int ans = 0; ans < question.Answers.Count; ans++)
@@ -364,11 +357,8 @@ namespace QuizMaker
         public static void ShowGradingResult(int correctAnswerCount, int numberOfQuestions)
         {
             Console.WriteLine($"You had {correctAnswerCount} correct answers out of {numberOfQuestions} questions.");
-
             double calResult = ((double)correctAnswerCount / numberOfQuestions) * Constant.PERCENTAGE_FACTOR;
-
             Console.WriteLine($"Procentage: {calResult}%");
-
             int result = (int)Math.Floor(calResult);
 
             if (IsAnswerCountBelowRange(result, GradeBorder.BorderFailed))
@@ -497,7 +487,6 @@ namespace QuizMaker
         {
 
             bool positionNotRetrived = true;
-
             int questionPosition = 0;
 
             while (positionNotRetrived)
@@ -561,8 +550,8 @@ namespace QuizMaker
         {
             List<string> answers = new List<string>();
             answers = chapterQuestions[questionPosition].Answers;
-
             Console.WriteLine("Answers:");
+
             for (int ans = 0; ans < answers.Count; ans++)
             {
                 Console.WriteLine($"{ans + 1}. {answers[ans]}");
@@ -580,11 +569,9 @@ namespace QuizMaker
         /// <returns>int answer position</returns>
         public static int GetAnswerIndex(List<string> answers)
         {
-
             Console.WriteLine("Which answer would you like to change?");
 
             bool positionNotRetrived = true;
-
             int answerPosition = 0;
 
             while (positionNotRetrived)
@@ -619,9 +606,10 @@ namespace QuizMaker
         /// <returns>boolean</returns>
         public static bool IsAnswerModified(int answerPosition, List<string> answers)
         {
-            bool modified = false;
             Console.WriteLine("Write the new question...");
             string response = Console.ReadLine();
+
+            bool modified = false;
 
             if (response != answers[answerPosition])
             {
@@ -638,32 +626,26 @@ namespace QuizMaker
         public static void ShowQuizChallengeResult(List<Question> sectionQuestions)
         {
             UI.ShowCategoryInquiry();
-
             int correctAnswerCount = UI.GetSumOfCorrectAnswer(sectionQuestions);
-
             int numberOfQuestions = sectionQuestions.Count;
-
             UI.ShowGradingResult(correctAnswerCount, numberOfQuestions);
         }
 
         public static QuizCategory GetCategoryModification()
         {
-            QuizCategory quizChapter = new QuizCategory();
 
             ShowSectionInquiry();
 
             string[] categoryNames = FileUtils.GetCategorySelection();
-
             string fileToModify = GetSelectedFileName(categoryNames);
 
+            QuizCategory quizChapter = new QuizCategory();
             quizChapter = FileUtils.DeserializeFileToCategory(fileToModify);
 
             List<Question> chapterQuestions = new List<Question>();
-
             chapterQuestions = quizChapter.Questions;
 
             Question inquiry = new Question();
-
             bool endModification = true;
 
             do
@@ -708,7 +690,6 @@ namespace QuizMaker
                 if (nameModified)
                 {
                     string newFilePath = FileUtils.UpdateAndSerializeNewCategoryName(quizChapter, fileToModify);
-                    
                     fileToModify = newFilePath;
                 }
                 if (QorAModified)
