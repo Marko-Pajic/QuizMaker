@@ -44,9 +44,7 @@ namespace QuizMaker
                             createNewCategory = UI.IsNewCategoryUnderway();
 
                         } while (createNewCategory);
-
                         break;
-
 
                     case QuizState.Play:
 
@@ -54,7 +52,6 @@ namespace QuizMaker
                         List<Question> sectionQuestions = quizSection.Questions;
                         UI.ShowQuizChallengeResult(sectionQuestions);
                         break;
-
 
                     case QuizState.Modify:
 
